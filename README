@@ -1,2 +1,22 @@
 This is TISDCC -- A toolchain and library set for programming in C for
 programmable calculators based on the z80 CPU.
+
+Directories:
+  * cmake/   - CMake build files.
+  * include/ - Headers for user programs to include.
+  * lib/     - Libraries for user programs to use.
+  * pctools/ - Tools for compiling user programs.
+
+Design goals:
+We want to facilitate compiling for calculators, however it is not a design
+goal that porting to different calculator models be trivial. This means
+that if you want your C program to run on TI-83, TI-86, TI-83+, you are
+responsible for any #ifdef/#define magic needed to make that happen. Instead,
+we choose to provide ti83.h, ti86.h, ti83p.h, etc.
+
+Tools:
+We provide
+  * libtisdcc - To pre-process, (and optionally) compile, assemble, and link
+    C programs.
+  * tisdcc - A frontend program for libtisdcc (aims to preserve GCC's
+    interface when possible).
