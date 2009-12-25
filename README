@@ -1,4 +1,7 @@
-This is TISDCC -- A toolchain and library set for programming in C for
+This is TISDCC 0.2.
+
+About:
+A toolchain and library set for programming in C for
 programmable calculators based on the z80 CPU.
 
 Directories:
