@@ -28,3 +28,9 @@ Dependencies:
 You will need
   * Python (tested on 2.6, but probably works on 2.5).
   * SDCC (tested against 2.9.0).
+
+Author(s):
+  * Conrad Meyer <konrad@tylerc.org>
+
+TISDCC was inspired by the work done by Florian Richter <Florian_Richter AT
+gmx.de> in 2006.

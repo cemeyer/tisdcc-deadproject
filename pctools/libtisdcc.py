@@ -27,12 +27,46 @@ VERSION = "0.2"
 
 
 
+PLATFORMS = ("ti83", \
+             "ti83_ion", \
+             "ti83p", \
+             "ti83p_ion", \
+             "ti83p_mirage", \
+             "ti85_zshell", \
+             "ti85_usgard", \
+             "ti82_ace", 
+             "ti86")
+
+CODELOC = {"ti83": "0x9327", \
+           "ti83_ion": "0x9327", \
+           "ti83p": "0x9D93", \
+           "ti83p_ion": "0x9D93", \
+           "ti83p_mirage": "0x9D93", \
+           "ti85_zshell": "0x", \
+           "ti85_usgard": "0x", \
+           "ti82_ace": "0x", \
+           "ti86": "0xD748"}
+
+DATALOC = {"ti83": "0x8265",
+           "ti83_ion": "0x8265", \
+           "ti83p": "0x9872", \
+           "ti83p_ion": "0x9872", \
+           "ti83p_mirage": "0x9872", \
+           "ti85_zshell": "0x80DF", \
+           "ti85_usgard": "0x", \
+           "ti82_ace": "0x", \
+           "ti86": "0x9872"}
+
+
+
 class CodeType:
   C = 1
   ASM = 2
   OBJECT = 3
   LIBRARY = 4
-  BINARY = 5
+  IHX = 5
+  PROGRAM = 6
+  UNKNOWN = 7
 
 
 
@@ -42,15 +76,32 @@ class CodeObject(object):
   binaries.
   """
 
+
   def __init__(self, type, contents, fromfile="<None>"):
     self.type = type
     self.contents = contents
     self.srcfile = fromfile
 
 
+  def writetofile(self, filename):
+    print "Wrote: %s" % filename
+    fh = open(filename, "wb")
+    fh.write(self.contents)
+    fh.close()
+
+
+  def replaceext(self, newext):
+    loc = self.srcfile.rfind(".")
+    if loc < 0:
+      raise Exception("Source filename '%s' has no extension." % \
+          self.srcfile)
+
+    return self.srcfile[:loc] + newext
+
+
 
 def infer_type_from_file(filename):
-  type = CodeType.BINARY
+  type = CodeType.UNKNOWN
   if filename.endswith(".c"):
     type = CodeType.C
   elif filename.endswith(".asm"):
@@ -59,6 +110,10 @@ def infer_type_from_file(filename):
     type = CodeType.OBJECT
   elif filename.endswith(".lib"):
     type = CodeType.LIBRARY
+  elif filename.endswith(".ihx"):
+    type = CodeType.IHX
+  elif filename[-4:-2] == ".8":
+    type = CodeType.PROGRAM
   return type
 
 
@@ -74,6 +129,28 @@ def codeobject_from_file(filename, tempfile=False):
     return CodeObject(type, fh.read(), fromfile=filename)
   else:
     return CodeObject(type, fh.read())
+
+
+
+def binary_extension(calc_name):
+  parts = calc_name.split("_", 1)
+  ctype = 'p'
+  if len(parts) > 1 and parts[1] == "app":
+    ctype = 'k'
+
+  model = parts[0]
+  if model == "ti83":
+    return '83p'
+  elif model == "ti82":
+    return '82p'
+  elif model == "ti83p":
+    return '8x' + ctype
+  elif model == "ti85p":
+    return '85p'
+  elif model == "ti86":
+    return '86p'
+
+  raise Exception("unknown calculator model '%s'" % calc_name)
 
 
 
@@ -120,8 +197,9 @@ def compile(codeobj, extraflags=[]):
 
 
 
-def link(codeobjlist, extraflags=[]):
+def link(codeobjlist, target, libdir, extraflags=[]):
   assert(len(codeobjlist) >= 1)
+  assert(target in PLATFORMS)
   for codeobj in codeobjlist:
     assert(codeobj.type == CodeType.OBJECT)
 
@@ -142,9 +220,16 @@ def link(codeobjlist, extraflags=[]):
       fh.close()
       srcfiles.append(tempsrc)
     
-    outfile = srcfiles[0].replace(".o", ".ihx")
+    outfile = "empty.ihx"
 
-    program = ["sdcc", "-mz80"] + extraflags + srcfiles
+    startupobjfile1 = "%s/%s1.o" % (libdir, target)
+    startupobjfile2 = "%s/%s2.o" % (libdir, target)
+    emptyobj = "%s/empty.o" % libdir
+    program = ["sdcc", "-mz80", "--no-std-crt0", "--code-loc", \
+        CODELOC[target], "--data-loc", DATALOC[target]] + extraflags + \
+        ["-Wl" + startupobjfile1] + \
+        ["-Wl" + fn for fn in srcfiles] + \
+        ["-Wl" + startupobjfile2] + [emptyobj]
     proc = subprocess.Popen(program, \
         shell=False, close_fds=True, stderr=subprocess.PIPE, \
         stdout=subprocess.PIPE, stdin=subprocess.PIPE)
@@ -164,17 +249,3 @@ def link(codeobjlist, extraflags=[]):
     # clean up after ourselves
     if wd is not None:
       shutil.rmtree(wd)
-
-
-
-if __name__ == "__main__":
-  a = codeobject_from_file("a.c")
-  b = codeobject_from_file("b.c")
-
-  ac = compile(a)
-  bc = compile(b)
-  
-  bin = link([bc, ac])
-  fh = open("./tmp-OUTPUT", "wb")
-  fh.write(bin.contents)
-  fh.close()

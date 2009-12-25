@@ -18,15 +18,96 @@
 
 
 import optparse
-
-
+import sys
 
 import libtisdcc
+CodeType = libtisdcc.CodeType
 
 
 
-parser = optparse.OptionParser(usage="Usage: %prog [options] file...", \
-    version="%prog " + libtisdcc.VERSION)
-parser.add_option("-o", None, dest="filename", help="output to FILE", \
-    metavar="FILE")
-(options, args) = parser.parse_args()
+def main():
+  # TODO: don't hardcode this...
+  libdir = "/home/konrad/projects/tisdcc/lib"
+  
+  parser = optparse.OptionParser(usage="Usage: %prog [options] file...", \
+      version="%prog " + libtisdcc.VERSION)
+
+  parser.add_option("-c", None, help="compile, assemble only (do not link)", \
+      action="store_true", dest="do_not_link")
+  parser.add_option("-S", None, help="compile only (do not assemble)", \
+      action="store_true", dest="do_not_assemble")
+  parser.add_option("-D", None, dest="defines", action="append", \
+      help="predefine NAME as a macro", metavar="NAME")
+  parser.add_option("-t", None, metavar="CALC", dest="platform", \
+      help="target CALC (ti83, ti83p_ion, etc.)")
+  parser.add_option("-o", None, dest="filename", help="output to FILE", \
+      metavar="FILE")
+
+  options, args = parser.parse_args()
+
+  if options.platform is None:
+    print "Sorry, please specify what model you are targetting."
+    sys.exit(1)
+
+  cos = []
+  for arg in args:
+    cos.append(libtisdcc.codeobject_from_file(arg))
+
+  if options.do_not_assemble:
+    # Only compile all C files, ignore everything else
+    for co in cos:
+      origco = co
+      if co.type == CodeType.C:
+        co = libtisdcc.compileonly(co)    # TODO: respect extraflags
+      else:
+        raise Exception("You can't compile '%s'!" % co.srcfile)
+
+      if len(cos) == 1 and options.filename is not None:
+        co.writetofile(options.filename)
+      else:
+        co.writetofile(origco.replaceext(".asm"))
+
+    return
+
+  else:
+    mapping = {}
+    newcos = []
+    for co in cos:
+      origfn = co.srcfile
+      if co.type == CodeType.C:
+        co = libtisdcc.compile(co)    # TODO: respect extraflags
+      if co.type == CodeType.ASM:
+        co = libtisdcc.assemble(co)
+      if co.type == CodeType.IHX or co.type == CodeType.PROGRAM:
+        raise Exception("Can't compile against a binary!")
+      newcos.append(co)
+      mapping[origfn] = co
+
+    if options.do_not_link:
+      # -c
+      for old, new in mapping.items():
+        if old == new: continue
+        new.writetofile(old.replaceext(".o"))
+
+      return
+
+    # link a binary or create a library
+    if options.filename is None:
+      options.filename = "a." + libtisdcc.binary_extension(options.platform)
+      print >> sys.stderr, "W: No filename specified, using: '%s'" % options.filename
+    outputtype = libtisdcc.infer_type_from_file(options.filename)
+    assert(outputtype in (CodeType.PROGRAM, CodeType.LIBRARY))
+
+    if outputtype == CodeType.PROGRAM:
+      # TODO: respect extraflags
+      resco = libtisdcc.link(newcos, options.platform, libdir)
+      # TODO: ihx2bin, bin2var
+    else:
+      resco = libtisdcc.library(newcos)
+
+    resco.writetofile(options.filename)
+
+
+
+if __name__ == "__main__":
+  main()
