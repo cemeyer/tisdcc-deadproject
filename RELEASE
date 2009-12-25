@@ -1,0 +1,4 @@
+- Bump VERSION in pctools/libtisdcc.py.
+- Bump version in README.
+- Commit, push to github.
+- Tar up, push to website.

@@ -2,10 +2,10 @@ This is TISDCC -- A toolchain and library set for programming in C for
 programmable calculators based on the z80 CPU.
 
 Directories:
-  * cmake/   - CMake build files.
-  * include/ - Headers for user programs to include.
-  * lib/     - Libraries for user programs to use.
-  * pctools/ - Tools for compiling user programs.
+  * doc/      - Documentation.
+  * include/  - Headers for user programs to include.
+  * lib/      - Libraries for user programs to use.
+  * pctools/  - Tools for compiling user programs.
 
 Design goals:
 We want to facilitate compiling for calculators, however it is not a design
