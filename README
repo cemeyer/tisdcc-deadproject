@@ -20,3 +20,8 @@ We provide
     C programs.
   * tisdcc - A frontend program for libtisdcc (aims to preserve GCC's
     interface when possible).
+
+Dependencies:
+You will need
+  * Python (tested on 2.6, but probably works on 2.5).
+  * SDCC (tested against 2.9.0).

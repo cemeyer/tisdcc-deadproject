@@ -1,0 +1,4 @@
+- Import headers from old tisdcc as ti83.h, ti83p_ion.h, etc.
+- Figure out what needs to do in a stdlib.
+- Import everything else that needs to be imported from old tisdcc.
+- Flush out tisdcc options; finish libtisdcc.
