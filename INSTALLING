@@ -1,0 +1,6 @@
+To install tisdcc:
+  * cd lib ; make ; cd ..     # builds the library and object files from
+                              # source
+  * make install              # install. You can override BINDIR, LIBDIR,
+                              # DOCDIR, and set DESTDIR to install to a
+                              # buildroot
