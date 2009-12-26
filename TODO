@@ -1,4 +1,4 @@
-- Import headers from old tisdcc as ti83.h, ti83p_ion.h, etc.
-- Figure out what needs to go in a stdlib.
+- Figure out what needs to go in a stdlib
+  - Finish wrapping all of the 83+ bcalls
 - Figure out how system install will work.
 - Docs.
