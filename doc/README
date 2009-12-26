@@ -32,3 +32,25 @@ void foobar(int arg1, ..., int argn) __naked
   ret
   __endasm;
 }
+
+
+Also: keep in mind the sdcc assembler has this fun feature where it will
+skip instructions it doesn't want to handle. So, if you have inline assembly
+in your code, be sure to compile-only it (tisdcc -S), then see if
+sdcc's as-z80 produces any errors (sdcc-as-z80 on Fedora):
+
+  $ sdcc-as-z80 -o foo.o foo.asm
+  foo.asm:52: Error: <a> machine specific addressing or addressing mode error
+
+Keep in mind: if it cannot find something for an immediate value, it will
+silently fill zero. Fun.
+
+Also (note to self mostly): prefix labels with '#' when using them as
+immediates. E.g.:
+  
+  ld hl, #_str
+  b_call(_PutS)
+  ret
+_str:
+  .ascii "Hello"
+  .db 0

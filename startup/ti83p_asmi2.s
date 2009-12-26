@@ -1,5 +1,6 @@
 	.module crt0_ti83p_asmi2
 
+        .area _CODE
 	ld (exitSP), sp
 	di
 	ld hl, #interrupt

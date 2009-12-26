@@ -1,5 +1,6 @@
 	.module crt0_ti83_asm2
 
+        .area _CODE
 	ld (exitSP), sp
 	di
 	call gsinit
