@@ -40,6 +40,8 @@ def main():
       dest="do_not_varup", action="store_true")
   parser.add_option("-D", None, dest="defines", action="append", \
       help="predefine NAME as a macro", metavar="NAME")
+  parser.add_option("-I", None, dest="includes", action="append", \
+      help="add DIR to include path", metavar="DIR")
   parser.add_option("-t", None, metavar="CALC", dest="platform", \
       help="target CALC (ti83, ti83p_ion, etc.)")
   parser.add_option("-o", None, dest="filename", help="output to FILE", \
@@ -60,7 +62,7 @@ def main():
     for co in cos:
       origco = co
       if co.type == CodeType.C:
-        co = libtisdcc.compileonly(co)    # TODO: respect extraflags
+        co = libtisdcc.compileonly(co, options)
       else:
         raise Exception("You can't compile '%s'!" % co.srcfile)
 
@@ -77,9 +79,9 @@ def main():
     for co in cos:
       origco = co
       if co.type == CodeType.C:
-        co = libtisdcc.compile(co)    # TODO: respect extraflags
+        co = libtisdcc.compile(co, options)
       if co.type == CodeType.ASM:
-        co = libtisdcc.assemble(co)
+        co = libtisdcc.assemble(co, options)
       if co.type == CodeType.IHX or co.type == CodeType.PROGRAM:
         raise Exception("Can't compile against a binary!")
       newcos.append(co)

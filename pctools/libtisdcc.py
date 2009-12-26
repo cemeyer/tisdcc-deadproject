@@ -214,7 +214,7 @@ def binary_extension(calc_name):
 
 
 
-def compile(codeobj, extraflags=[]):
+def compile(codeobj, options):
   assert(codeobj.type == CodeType.C)
 
   cwd = os.getcwd()
@@ -230,6 +230,14 @@ def compile(codeobj, extraflags=[]):
     fh = open(tempsrc, "wb")
     fh.write(codeobj.contents)
     fh.close()
+
+    extraflags = []
+    if options.includes:
+      for incp in options.includes:
+        extraflags.append("-I%s" % incp)
+    if options.defines:
+      for defn in options.defines:
+        extraflags.append("-D%s" % defn)
 
     proc = subprocess.Popen(["sdcc", "-mz80", "--opt-code-size", \
         "--peep-asm", "--stack-auto", "--std-sdcc99", "--portmode=z80"] + \
@@ -445,7 +453,7 @@ def ihx_to_prgm(co, name, target):
 
 
 
-def compileonly(codeobj, extraflags=[]):
+def compileonly(codeobj, options):
   assert(codeobj.type == CodeType.C)
 
   cwd = os.getcwd()
@@ -461,6 +469,14 @@ def compileonly(codeobj, extraflags=[]):
     fh = open(tempsrc, "wb")
     fh.write(codeobj.contents)
     fh.close()
+
+    extraflags = []
+    if options.includes:
+      for incp in options.includes:
+        extraflags.append("-I%s" % incp)
+    if options.defines:
+      for defn in options.defines:
+        extraflags.append("-D%s" % defn)
 
     proc = subprocess.Popen(["sdcc", "-mz80", "--opt-code-size", \
         "--peep-asm", "--stack-auto", "--std-sdcc99", "--portmode=z80"] + \

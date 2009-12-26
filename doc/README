@@ -54,3 +54,8 @@ immediates. E.g.:
 _str:
   .ascii "Hello"
   .db 0
+
+As far as parameter / return value semantics goes, it looks like SDCC expects
+all the arguments on the stack. 8-bit return values go in L, 16-bit in HL,
+and 32-bit in DEHL. SDCC is caller-saves by default, but this does NOT apply
+to __naked functions -- they need to save whatever they use.
