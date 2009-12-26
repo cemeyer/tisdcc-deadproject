@@ -1,0 +1,34 @@
+So, b_call wrappers will probably look something like this (sdcc passes
+arguments on the stack -- I can't find a better way of specifying
+assembly functions):
+
+void foobar(int arg1, ..., int argn) __naked
+{
+  arg1; ... ; argn; // avoid variable unused warnings
+
+  __asm
+  push ix ; save old ix
+          ; Do we need to save HL,BC,DE if we clobber them? I think we do
+          ; -- not sure.
+
+  ld ix,#0
+  add ix,sp ; sp -> ix
+
+  ; load arg1 off the stack (stored LE) to HL
+  ld a,4(ix)
+  ld l,a
+  ld a,5(ix)
+  ld h,a
+
+  ; load arg2 to BC
+  ld a,6(ix)
+  ld c,a
+  ld a,7(ix)
+  ld b,a
+
+  b_call(foobar)
+
+  pop ix
+  ret
+  __endasm;
+}

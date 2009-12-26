@@ -1,0 +1,15 @@
+These are the assembly modules that are linked into programs. The way it
+works is:
+
+I want to link my program (a.c) for ti83p_ion. Ion supports programs with
+names, so tisdcc compiles a.c into an object file (a.o), and then links
+ti83p_ion1.o, name.o, ti83p_ion2.o, and a.o into the resulting binary
+(a.ihx). Then, we ihx2bin and bin2var a.ihx and get a.8xp.
+
+However, say I want to link my program (b.c) for ti83p. This does not
+support names, but the process is similar. b.c is compiled to b.o;
+then ti83p1.o, name.o, ti83p2.o, and b.o are linked. In this case,
+name.o is the empty object file (e.g.:
+  touch empty.c
+  sdcc -mz80 -o name.o -c empty.c
+).
