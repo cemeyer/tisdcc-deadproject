@@ -27,7 +27,7 @@ CodeType = libtisdcc.CodeType
 
 def main():
   # TODO: don't hardcode this...
-  libdir = "/home/konrad/projects/tisdcc/lib"
+  libdir = "/home/konrad/projects/tisdcc/startup"
   
   parser = optparse.OptionParser(usage="Usage: %prog [options] file...", \
       version="%prog " + libtisdcc.VERSION)
@@ -36,6 +36,8 @@ def main():
       action="store_true", dest="do_not_link")
   parser.add_option("-S", None, help="compile only (do not assemble)", \
       action="store_true", dest="do_not_assemble")
+  parser.add_option("-V", None, help="do not convert to a graphlink var", \
+      dest="do_not_varup", action="store_true")
   parser.add_option("-D", None, dest="defines", action="append", \
       help="predefine NAME as a macro", metavar="NAME")
   parser.add_option("-t", None, metavar="CALC", dest="platform", \
@@ -73,7 +75,7 @@ def main():
     mapping = {}
     newcos = []
     for co in cos:
-      origfn = co.srcfile
+      origco = co
       if co.type == CodeType.C:
         co = libtisdcc.compile(co)    # TODO: respect extraflags
       if co.type == CodeType.ASM:
@@ -81,7 +83,7 @@ def main():
       if co.type == CodeType.IHX or co.type == CodeType.PROGRAM:
         raise Exception("Can't compile against a binary!")
       newcos.append(co)
-      mapping[origfn] = co
+      mapping[origco] = co
 
     if options.do_not_link:
       # -c
@@ -96,12 +98,13 @@ def main():
       options.filename = "a." + libtisdcc.binary_extension(options.platform)
       print >> sys.stderr, "W: No filename specified, using: '%s'" % options.filename
     outputtype = libtisdcc.infer_type_from_file(options.filename)
-    assert(outputtype in (CodeType.PROGRAM, CodeType.LIBRARY))
+    assert(outputtype in (CodeType.PROGRAM, CodeType.LIBRARY, CodeType.IHX))
 
-    if outputtype == CodeType.PROGRAM:
+    if outputtype in (CodeType.PROGRAM, CodeType.IHX):
       # TODO: respect extraflags
-      resco = libtisdcc.link(newcos, options.platform, libdir)
-      # TODO: ihx2bin, bin2var
+      resco = libtisdcc.link(newcos, options.platform, libdir, options.filename)
+      if not options.do_not_varup:
+        resco = libtisdcc.ihx_to_prgm(resco, options.filename, options.platform)
     else:
       resco = libtisdcc.library(newcos)
 
