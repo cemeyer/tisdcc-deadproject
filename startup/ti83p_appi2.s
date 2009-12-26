@@ -1,0 +1,70 @@
+	.module crt0_ti83p_appi2
+
+	.area _CODE
+	;; before should be name.o
+	.db 0x80,0x81                   ; Field:                 App Pages
+	.db 0x01                                ; App Pages = 1
+	.db 0x80,0x90                   ; No default splash screen
+	.db 0x03,0x26 ,0x09,0x04, 0x04,0x6f,0x1b,0x80 ; Field:   Date stamp- 5/12/1999
+	.db 0x02,0x0d,0x40              ; Dummy encrypted TI date stamp signature
+	.db 0xa1 ,0x6b ,0x99 ,0xf6 ,0x59 ,0xbc ,0x67
+	.db 0xf5 ,0x85 ,0x9c ,0x09 ,0x6c ,0x0f ,0xb4 ,0x03 ,0x9b ,0xc9
+	.db 0x03 ,0x32 ,0x2c ,0xe0 ,0x03 ,0x20 ,0xe3 ,0x2c ,0xf4 ,0x2d
+	.db 0x73 ,0xb4 ,0x27 ,0xc4 ,0xa0 ,0x72 ,0x54 ,0xb9 ,0xea ,0x7c
+	.db 0x3b ,0xaa ,0x16 ,0xf6 ,0x77 ,0x83 ,0x7a ,0xee ,0x1a ,0xd4
+	.db 0x42 ,0x4c ,0x6b ,0x8b ,0x13 ,0x1f ,0xbb ,0x93 ,0x8b ,0xfc
+	.db 0x19 ,0x1c ,0x3c ,0xec ,0x4d ,0xe5 ,0x75
+	.db 0x80,0x7F                   ; Field:                 Program Image length
+	.db   0,0,0,0                   ; Length=0, N/A
+	.db   0,0,0,0                   ; Reserved
+	.db   0,0,0,0                   ; Reserved
+	.db   0,0,0,0                   ; Reserved
+	.db   0,0,0,0                   ; Reserved
+
+	ld (exitSP), sp
+	di
+	ld hl, #interrupt
+	ld (0x8A3F), hl                 ; 
+	ld (0x8A7F), hl
+	ld (0x8ABF), hl
+	ld (0x8AFF), hl
+	ld a, #0x8A
+	ld i, a
+	im 2
+	ei
+
+	call gsinit
+	.globl _main
+	call _main
+_exit::
+	ld sp,(exitSP)
+	ld iy,#0x89F0
+	im 1
+	;;   B_JUMP JForceCmdNoChar   ;Exit the application
+	call 0x50
+	.dw 0x4027
+
+interrupt:                        ; mini interrupt wrapper
+	di
+	ex af, af'
+	exx
+	ld (saveIY), iy
+	ld iy, #0x89F0
+cont_int:
+	call #0x003A                    ; jump to TI-OS interrupt
+	ld iy, (saveIY)                 ; during this command, an interrupt can accure!?!?!?
+	ret
+
+	.area _GSINIT
+gsinit:
+	.area _GSFINAL
+	ret
+
+	.area _CONST
+
+	.area _DATA
+exitSP:
+	.ds 2
+saveIY:
+	.ds 2
+
