@@ -2,3 +2,4 @@
 */.*.swp
 .*.swp
 */*.pyc
+include/ti83pdefs.h

@@ -9,8 +9,8 @@
 unsigned char Bit_VertSplit() __naked
 {
   __asm
-    .db 0x2E, 0x01    ;   ld l,1
-    BCALL(_Bit_VertSplit___)
+    ld l,#1
+    BCALL(_Bit_VertSplit___db)
     jr nz,screen_is_split
     dec l
 screen_is_split:

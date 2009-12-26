@@ -8,36 +8,38 @@ void foobar(int arg1, ..., int argn) __naked
 
   __asm
   push ix ; save old ix
-          ; Do we need to save HL,BC,DE if we clobber them? I think we do
-          ; -- not sure.
+  push hl ; We need to save HL,BC,DE if we clobber them.
+  push bc ; Note: return type of byte -> we can clobber l
+          ;                      short -> we can clobber hl
+          ;                      long -> we can clobber de,hl
+          ;                      void -> can't clobber anything
 
   ld ix,#0
-  add ix,sp ; sp -> ix
+  add ix,sp   ; sp -> ix
 
   ; load arg1 off the stack (stored LE) to HL
-  ld a,4(ix)
-  ld l,a
-  ld a,5(ix)
-  ld h,a
+  ld l,8(ix)
+  ld h,9(ix)
 
   ; load arg2 to BC
-  ld a,6(ix)
-  ld c,a
-  ld a,7(ix)
-  ld b,a
+  ld c,10(ix)
+  ld b,11(ix)
 
-  b_call(foobar)
+  BCALL(_foobar___db) ; symbol in .inc is "_foobar"
+                      ; "___db" means it's in the form
+                      ; 0xLL, 0xHH
+                      ; if it's 0xHHLL in the .inc file
 
+  pop bc
+  pop hl
   pop ix
   ret
   __endasm;
 }
 
-
-Also: keep in mind the sdcc assembler has this fun feature where it will
-skip instructions it doesn't want to handle. So, if you have inline assembly
-in your code, be sure to compile-only it (tisdcc -S), then see if
-sdcc's as-z80 produces any errors (sdcc-as-z80 on Fedora):
+If you have inline assembly in your code, be sure to compile-only it
+(tisdcc -S), then see if sdcc's as-z80 produces any errors
+(sdcc-as-z80 on Fedora):
 
   $ sdcc-as-z80 -o foo.o foo.asm
   foo.asm:52: Error: <a> machine specific addressing or addressing mode error
