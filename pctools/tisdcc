@@ -89,9 +89,12 @@ def main():
 
     if options.do_not_link:
       # -c
-      for old, new in mapping.items():
-        if old == new: continue
-        new.writetofile(old.replaceext(".o"))
+      if len(mapping) == 1 and options.filename is not None:
+        mapping.items()[0][1].writetofile(options.filename)
+      else:
+        for old, new in mapping.items():
+          if old == new: continue
+          new.writetofile(old.replaceext(".o"))
 
       return
 
