@@ -17,4 +17,72 @@ screen_is_split:
     ret
   __endasm;
 }
+
+unsigned char CheckSplitFlag() __naked
+{
+  __asm
+    ld l,#0
+    BCALL(_CheckSplitFlag___db)
+    jr z,split_inactive
+    inc l
+split_inactive:
+    ret
+  __endasm;
+}
+
+void ClearRow(unsigned char a) __naked
+{
+  a;
+  __asm
+    push ix
+    push de
+    push bc
+    push af
+    ld ix,#0
+    add ix,sp
+    ld a,10(ix) ; stack is AF, BC, DE, IX, RA, A
+    BCALL(_ClearRow___db)
+    pop af
+    pop bc
+    pop de
+    pop ix
+    ret
+  __endasm;
+}
+
+void ClrLCD() __naked
+{
+  __asm
+    push bc
+    push de
+    push hl
+    push af
+    push ix
+    BCALL(_ClrLCD___db)
+    pop ix
+    pop af
+    pop hl
+    pop de
+    pop bc
+    ret
+  __endasm;
+}
+
+void ClrLCDFull() __naked
+{
+  __asm
+    push bc
+    push de
+    push hl
+    push af
+    push ix
+    BCALL(_ClrLCDFull___db)
+    pop ix
+    pop af
+    pop hl
+    pop de
+    pop bc
+    ret
+  __endasm;
+}
 #endif
