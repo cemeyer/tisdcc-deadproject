@@ -11,7 +11,7 @@ unsigned char Bit_VertSplit() __naked
   __asm
     ld l,#1
     push iy           ; save our iy value
-    ld iy,#flags___dw ; load TIOS' iy value
+    ld iy,#flags___dw ; load TIOS iy value
     BCALL(_Bit_VertSplit___db)
     jr nz,screen_is_split
     dec l
@@ -26,7 +26,7 @@ unsigned char CheckSplitFlag() __naked
   __asm
     ld l,#0
     push iy           ; save our iy value
-    ld iy,#flags___dw ; load TIOS' iy value
+    ld iy,#flags___dw ; load TIOS iy value
     BCALL(_CheckSplitFlag___db)
     jr z,split_inactive
     inc l
@@ -109,7 +109,7 @@ void ClrScrn() __naked
     push de
     push bc
     push af
-    ld iy,#flags___dw ; load TIOS' iy value
+    ld iy,#flags___dw ; load TIOS iy value
     BCALL(_ClrScrn___db)
     pop af
     pop bc
@@ -130,7 +130,7 @@ void ClrScrnFull() __naked
     push de
     push bc
     push af
-    ld iy,#flags___dw ; load TIOS' iy value
+    ld iy,#flags___dw ; load TIOS iy value
     BCALL(_ClrScrnFull___db)
     pop af
     pop bc
@@ -197,7 +197,7 @@ void DisplayImage(void *img, int loc) __naked
     push de
     push bc
     push af
-    ld iy,#flags___dw ; load TIOS' iy value
+    ld iy,#flags___dw ; load TIOS iy value
     ; stack is AF, BC, DE, HL, IY, IX, RA, img, loc
     ld hl,#17
     add hl,sp
@@ -230,7 +230,7 @@ void DispOP1A(unsigned char maxdigits) __naked
     push de
     push bc
     push af
-    ld iy,#flags___dw ; load TIOS' iy value
+    ld iy,#flags___dw ; load TIOS iy value
     ld hl,#14
     add hl,sp
     ld a,(hl)
@@ -249,7 +249,7 @@ void EraseEOL() __naked
 {
   __asm
     push iy
-    ld iy,#flags___dw ; load TIOS' iy value
+    ld iy,#flags___dw ; load TIOS iy value
     BCALL(_EraseEOL___db)
     pop iy
     ret
@@ -264,7 +264,7 @@ int FormBase() __naked
     push de
     push bc
     push af
-    ld iy,#flags___dw ; load TIOS' iy value
+    ld iy,#flags___dw ; load TIOS iy value
     BCALL(_FormBase___db)
     ld h,b
     ld l,c
@@ -285,7 +285,7 @@ int FormDCplx() __naked
     push de
     push bc
     push af
-    ld iy,#flags___dw ; load TIOS' iy value
+    ld iy,#flags___dw ; load TIOS iy value
     BCALL(_FormDCplx___db)
     ld h,b
     ld l,c
@@ -307,7 +307,7 @@ int FormEReal(unsigned char maxwidth) __naked
     push de
     push bc
     push af
-    ld iy,#flags___dw ; load TIOS' iy value
+    ld iy,#flags___dw ; load TIOS iy value
     ld hl,#12
     add hl,sp
     ld a,(hl)
@@ -332,7 +332,7 @@ int FormReal(unsigned char maxwidth) __naked
     push de
     push bc
     push af
-    ld iy,#flags___dw ; load TIOS' iy value
+    ld iy,#flags___dw ; load TIOS iy value
     ld hl,#12
     add hl,sp
     ld a,(hl)
@@ -358,7 +358,7 @@ void LoadPattern(unsigned char charequate) __naked
     push de
     push bc
     push af
-    ld iy,#flags___dw ; load TIOS' iy value
+    ld iy,#flags___dw ; load TIOS iy value
     ld hl,#14
     add hl,sp
     ld a,(hl)
@@ -399,7 +399,7 @@ void NewLine() __naked
     push de
     push bc
     push af
-    ld iy,#flags___dw ; load TIOS' iy value
+    ld iy,#flags___dw ; load TIOS iy value
     BCALL(_NewLine___db)
     pop af
     pop bc
@@ -428,7 +428,7 @@ void OutputExpr(unsigned char col, unsigned char row) __naked
     inc hl
     ld l,(hl)
     ld h,a
-    ld iy,#flags___dw ; load TIOS' iy value
+    ld iy,#flags___dw ; load TIOS iy value
     BCALL(_OutputExpr___db)
     pop af
     pop bc
@@ -449,7 +449,7 @@ void PutC(char c) __naked
     ld hl,#6
     add hl,sp
     ld a,(hl)
-    ld iy,#flags___dw ; load TIOS' iy value
+    ld iy,#flags___dw ; load TIOS iy value
     BCALL(_PutC___db)
     pop hl
     pop iy
@@ -466,7 +466,7 @@ void PutMap(char c) __naked
     ld hl,#6
     add hl,sp
     ld a,(hl)
-    ld iy,#flags___dw ; load TIOS' iy value
+    ld iy,#flags___dw ; load TIOS iy value
     BCALL(_PutMap___db)
     pop hl
     pop iy
@@ -483,7 +483,7 @@ void PutPS(char *str) __naked
     push hl
     push bc
     push af
-    ld iy,#flags___dw ; load TIOS' iy value
+    ld iy,#flags___dw ; load TIOS iy value
     ld hl,#12
     add hl,sp
     ld c,(hl)
@@ -509,7 +509,7 @@ void PutPSB(char *str) __naked
     push hl
     push bc
     push af
-    ld iy,#flags___dw ; load TIOS' iy value
+    ld iy,#flags___dw ; load TIOS iy value
     ld hl,#12
     add hl,sp
     ld c,(hl)
@@ -533,7 +533,7 @@ void PutS(char *str) __naked
     push iy
     push hl
     push af
-    ld iy,#flags___dw ; load TIOS' iy value
+    ld iy,#flags___dw ; load TIOS iy value
     ld hl,#8
     add hl,sp
     ld a,(hl)
@@ -550,7 +550,7 @@ void PutS(char *str) __naked
 
 void PutTokString(int tok) __naked
 {
-  str;
+  tok;
   __asm
     push iy ; not entirely sure we need to save iy
     push ix
@@ -558,7 +558,7 @@ void PutTokString(int tok) __naked
     push de
     push bc
     push af
-    ld iy,#flags___dw ; load TIOS' iy value
+    ld iy,#flags___dw ; load TIOS iy value
     ld hl,#14
     add hl,sp
     ld e,(hl)
@@ -585,7 +585,7 @@ void RestoreDisp(void *data, unsigned char numrows) __naked
     push de
     push bc
     push af
-    ld iy,#flags___dw ; load TIOS' iy value
+    ld iy,#flags___dw ; load TIOS iy value
     ld hl,#16
     add hl,sp
     ld b,(hl)
@@ -609,7 +609,7 @@ void RunIndicOff() __naked
 {
   __asm
     push iy
-    ld iy,#flags___dw ; load TIOS' iy value
+    ld iy,#flags___dw ; load TIOS iy value
     BCALL(_RunIndicOff___db)
     pop iy
     ret
@@ -620,7 +620,7 @@ void RunIndicOn() __naked
 {
   __asm
     push iy
-    ld iy,#flags___dw ; load TIOS' iy value
+    ld iy,#flags___dw ; load TIOS iy value
     BCALL(_RunIndicOn___db)
     pop iy
     ret
@@ -637,7 +637,7 @@ void SaveDisp(void *ptr) __naked
     push de
     push bc
     push af
-    ld iy,#flags___dw ; load TIOS' iy value
+    ld iy,#flags___dw ; load TIOS iy value
     ld hl,#14
     ld a,(hl)
     inc hl
@@ -663,7 +663,7 @@ void SetNorm_Vals() __naked
     push de
     push bc
     push af
-    ld iy,#flags___dw ; load TIOS' iy value
+    ld iy,#flags___dw ; load TIOS iy value
     BCALL(_SetNorm_Vals___db)
     pop af
     pop bc
@@ -685,7 +685,7 @@ unsigned char SFont_Len(unsigned int offset) __naked
     push bc
     ld l,a      ; save h, a on stack
     push hl     ; (we trash l and f safely)
-    ld iy,#flags___dw ; load TIOS' iy value
+    ld iy,#flags___dw ; load TIOS iy value
     ld hl,#12   ; load offset off the stack
     add hl,sp
     ld a,(hl)
@@ -780,7 +780,7 @@ void VPutS(char *str) __naked
 
 void VPutSN(char *str, unsigned char len) __naked
 {
-  str;
+  str; len;
   __asm
     push iy
     push hl
@@ -948,6 +948,7 @@ unsigned char IsEditEmpty() __naked
 
 char *KeyToString(int key) __naked
 {
+  key;
   __asm
     push iy ; not entirely sure this is needed
     push af
@@ -978,6 +979,405 @@ void ReleaseBuffer() __naked
     push af
     ld iy,#flags___dw
     BCALL(_ReleaseBuffer___db)
+    pop af
+    pop bc
+    pop de
+    pop hl
+    pop ix
+    pop iy
+    ret
+  __endasm;
+}
+
+void ErrArgument() __naked
+{
+  __asm
+    push iy
+    ld iy,#flags___dw
+    BJUMP(_ErrArgument___db)
+    pop iy
+    ret
+  __endasm;
+}
+
+void ErrBadGuess() __naked
+{
+  __asm
+    push iy
+    ld iy,#flags___dw
+    BJUMP(_ErrBadGuess___db)
+    pop iy
+    ret
+  __endasm;
+}
+
+void ErrBreak() __naked
+{
+  __asm
+    push iy
+    ld iy,#flags___dw
+    BJUMP(_ErrBreak___db)
+    pop iy
+    ret
+  __endasm;
+}
+
+void ErrD_OP1_0() __naked
+{
+  __asm
+    push iy
+    ld iy,#flags___dw
+    push af
+    BJUMP(_ErrD_OP1_0___db)
+    pop af
+    pop iy
+    ret
+  __endasm;
+}
+
+void ErrD_OP1_LE_0() __naked
+{
+  __asm
+    push iy
+    ld iy,#flags___dw
+    push af
+    BJUMP(_ErrD_OP1_LE_0___db)
+    pop af
+    pop iy
+    ret
+  __endasm;
+}
+
+void ErrD_OP1Not_R() __naked
+{
+  __asm
+    push iy
+    ld iy,#flags___dw
+    push af
+    BJUMP(_ErrD_OP1Not_R___db)
+    pop af
+    pop iy
+    ret
+  __endasm;
+}
+
+void ErrD_OP1NotPos() __naked
+{
+  __asm
+    push iy
+    ld iy,#flags___dw
+    push af
+    BJUMP(_ErrD_OP1NotPos___db)
+    pop af
+    pop iy
+    ret
+  __endasm;
+}
+
+void ErrD_OP1NotPosInt() __naked
+{
+  __asm
+    push iy
+    ld iy,#flags___dw
+    push af
+    BJUMP(_ErrD_OP1NotPosInt___db)
+    pop af
+    pop iy
+    ret
+  __endasm;
+}
+
+void ErrDataType() __naked
+{
+  __asm
+    push iy
+    ld iy,#flags___dw
+    BJUMP(_ErrDataType___db)
+    pop iy
+    ret
+  __endasm;
+}
+
+void ErrDimension() __naked
+{
+  __asm
+    push iy
+    ld iy,#flags___dw
+    BJUMP(_ErrDimension___db)
+    pop iy
+    ret
+  __endasm;
+}
+
+void ErrDimMismatch() __naked
+{
+  __asm
+    push iy
+    ld iy,#flags___dw
+    BJUMP(_ErrDimMismatch___db)
+    pop iy
+    ret
+  __endasm;
+}
+
+void ErrDivBy0() __naked
+{
+  __asm
+    push iy
+    ld iy,#flags___dw
+    BJUMP(_ErrDivBy0___db)
+    pop iy
+    ret
+  __endasm;
+}
+
+void ErrDomain() __naked
+{
+  __asm
+    push iy
+    ld iy,#flags___dw
+    BJUMP(_ErrDomain___db)
+    pop iy
+    ret
+  __endasm;
+}
+
+void ErrIncrement() __naked
+{
+  __asm
+    push iy
+    ld iy,#flags___dw
+    BJUMP(_ErrIncrement___db)
+    pop iy
+    ret
+  __endasm;
+}
+
+void ErrInvalid() __naked
+{
+  __asm
+    push iy
+    ld iy,#flags___dw
+    BJUMP(_ErrInvalid___db)
+    pop iy
+    ret
+  __endasm;
+}
+
+void ErrIterations() __naked
+{
+  __asm
+    push iy
+    ld iy,#flags___dw
+    BJUMP(_ErrIterations___db)
+    pop iy
+    ret
+  __endasm;
+}
+
+void ErrLinkXmit() __naked
+{
+  __asm
+    push iy
+    ld iy,#flags___dw
+    BJUMP(_ErrLinkXmit___db)
+    pop iy
+    ret
+  __endasm;
+}
+
+void ErrMemory() __naked
+{
+  __asm
+    push iy
+    ld iy,#flags___dw
+    BJUMP(_ErrMemory___db)
+    pop iy
+    ret
+  __endasm;
+}
+
+void ErrNon_Real() __naked
+{
+  __asm
+    push iy
+    ld iy,#flags___dw
+    BJUMP(_ErrNon_Real___db)
+    pop iy
+    ret
+  __endasm;
+}
+
+void ErrNonReal(unsigned char numargs) __naked
+{
+  numargs;
+  __asm
+    push iy
+    ld iy,#flags___dw
+    push hl
+    ld l,c
+    ld c,a
+    push bc ; save b, a
+    ld c,l
+    ld hl,#8
+    add hl,sp
+    ld b,(hl)
+    BJUMP(_ErrNonReal___db)
+    ld l,c
+    pop bc
+    ld a,c
+    ld c,l
+    pop hl
+    pop iy
+    ret
+  __endasm;
+}
+
+void ErrNotEnoughMem(unsigned int size) __naked
+{
+  size;
+  __asm
+    push iy
+    ld iy,#flags___dw
+    push hl
+    push af
+    ld hl,#8
+    ld a,(hl)
+    inc hl
+    ld h,(hl)
+    ld l,a
+    BJUMP(_ErrNotEnoughMem___db)
+    pop af
+    pop hl
+    pop iy
+    ret
+  __endasm;
+}
+
+void ErrOverflow() __naked
+{
+  __asm
+    push iy
+    ld iy,#flags___dw
+    BJUMP(_ErrOverflow___db)
+    pop iy
+    ret
+  __endasm;
+}
+
+void ErrSignChange() __naked
+{
+  __asm
+    push iy
+    ld iy,#flags___dw
+    BJUMP(_ErrSignChange___db)
+    pop iy
+    ret
+  __endasm;
+}
+
+void ErrSingularMat() __naked
+{
+  __asm
+    push iy
+    ld iy,#flags___dw
+    BJUMP(_ErrSingularMat___db)
+    pop iy
+    ret
+  __endasm;
+}
+
+void ErrStat() __naked
+{
+  __asm
+    push iy
+    ld iy,#flags___dw
+    BJUMP(_ErrStat___db)
+    pop iy
+    ret
+  __endasm;
+}
+
+void ErrStatPlot() __naked
+{
+  __asm
+    push iy
+    ld iy,#flags___dw
+    BJUMP(_ErrStatPlot___db)
+    pop iy
+    ret
+  __endasm;
+}
+
+void ErrSyntax() __naked
+{
+  __asm
+    push iy
+    ld iy,#flags___dw
+    BJUMP(_ErrSyntax___db)
+    pop iy
+    ret
+  __endasm;
+}
+
+void ErrTolTooSmall() __naked
+{
+  __asm
+    push iy
+    ld iy,#flags___dw
+    BJUMP(_ErrTolTooSmall___db)
+    pop iy
+    ret
+  __endasm;
+}
+
+void ErrUndefined() __naked
+{
+  __asm
+    push iy
+    ld iy,#flags___dw
+    BJUMP(_ErrUndefined___db)
+    pop iy
+    ret
+  __endasm;
+}
+
+void JError(unsigned char flags) __naked
+{
+  flags;
+  __asm
+    push iy
+    push ix
+    push hl
+    push de
+    push bc
+    push af
+    ld iy,#flags___dw
+    ld hl,#14
+    add hl,sp
+    ld a,(hl)
+    BJUMP(_ErrUndefined___db)
+    pop af
+    pop bc
+    pop de
+    pop hl
+    pop ix
+    pop iy
+    ret
+  __endasm;
+}
+
+void JErrorNo() __naked
+{
+  __asm
+    push iy
+    push ix
+    push hl
+    push de
+    push bc
+    push af
+    ld iy,#flags___dw
+    BJUMP(_ErrUndefined___db)
     pop af
     pop bc
     pop de
