@@ -801,4 +801,190 @@ void VPutSN(char *str, unsigned char len) __naked
     ret
   __endasm;
 }
+
+void CloseEditBuf() __naked
+{
+  __asm
+    push iy
+    push ix
+    push hl
+    push de
+    push bc
+    push af
+    ld iy,#flags___dw
+    BCALL(_CloseEditBuf___db)
+    pop af
+    pop bc
+    pop de
+    pop hl
+    pop ix
+    pop iy
+    ret
+  __endasm;
+}
+
+void CloseEditBufNoR() __naked
+{
+  __asm
+    push iy
+    push ix
+    push hl
+    push de
+    push bc
+    push af
+    ld iy,#flags___dw
+    BCALL(_CloseEditBufNoR___db)
+    pop af
+    pop bc
+    pop de
+    pop hl
+    pop ix
+    pop iy
+    ret
+  __endasm;
+}
+
+void CloseEditEqu() __naked
+{
+  __asm
+    push iy
+    push ix
+    push hl
+    push de
+    push bc
+    push af
+    ld iy,#flags___dw
+    BCALL(_CloseEditEqu___db)
+    pop af
+    pop bc
+    pop de
+    pop hl
+    pop ix
+    pop iy
+    ret
+  __endasm;
+}
+
+void CursorOff() __naked
+{
+  __asm
+    push iy
+    push ix
+    push hl
+    push de
+    push bc
+    push af
+    ld iy,#flags___dw
+    BCALL(_CursorOff___db)
+    pop af
+    pop bc
+    pop de
+    pop hl
+    pop ix
+    pop iy
+    ret
+  __endasm;
+}
+
+void CursorOn() __naked
+{
+  __asm
+    push iy
+    push ix
+    push hl
+    push de
+    push bc
+    push af
+    ld iy,#flags___dw
+    BCALL(_CursorOn___db)
+    pop af
+    pop bc
+    pop de
+    pop hl
+    pop ix
+    pop iy
+    ret
+  __endasm;
+}
+
+void DispEOL() __naked
+{
+  __asm
+    push iy ; not entirely sure this is needed
+    push hl
+    push de
+    push bc
+    push af
+    ld iy,#flags___dw
+    BCALL(_DispEOL___db)
+    pop af
+    pop bc
+    pop de
+    pop hl
+    pop iy
+    ret
+  __endasm;
+}
+
+unsigned char IsEditEmpty() __naked
+{
+  __asm
+    push iy ; not entirely sure this is needed
+    push de
+    ld l,a
+    push hl
+    ld iy,#flags___dw
+    BCALL(_IsEditEmpty___db)
+    pop hl
+    ld a,l
+    pop de
+    pop iy
+    ld l,1
+    ret z
+    dec l
+    ret
+  __endasm;
+}
+
+char *KeyToString(int key) __naked
+{
+  __asm
+    push iy ; not entirely sure this is needed
+    push af
+    push bc
+    push de
+    ld hl,#10
+    ld e,(hl)
+    inc hl
+    ld d,(hl)
+    ld iy,#flags___dw
+    BCALL(_KeyToString___db)
+    pop de
+    pop bc
+    pop af
+    pop iy
+    ret
+  __endasm;
+}
+
+void ReleaseBuffer() __naked
+{
+  __asm
+    push iy
+    push ix
+    push hl
+    push de
+    push bc
+    push af
+    ld iy,#flags___dw
+    BCALL(_ReleaseBuffer___db)
+    pop af
+    pop bc
+    pop de
+    pop hl
+    pop ix
+    pop iy
+    ret
+  __endasm;
+}
 #endif

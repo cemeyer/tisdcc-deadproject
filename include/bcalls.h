@@ -37,4 +37,13 @@ unsigned int SStringLength(char *str);
 void VPutMap(char c);
 void VPutS(char *str);
 void VPutSN(char *str, unsigned char len);
+void CloseEditBuf();
+void CloseEditBufNoR();
+void CloseEditEqu();
+void CursorOff();
+void CursorOn();
+void DispEOL();
+unsigned char IsEditEmpty();
+char *KeyToString(int key);
+void ReleaseBuffer();
 #endif
