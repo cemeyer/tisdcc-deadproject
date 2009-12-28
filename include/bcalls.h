@@ -226,4 +226,6 @@ void ZmStats();
 void ZmTrig();
 void ZmUsr();
 void ZooDefault();
+unsigned long DivHLBy10(unsigned int hl);
+unsigned long DivHLByA(unsigned int hl, unsigned char a);
 #endif
