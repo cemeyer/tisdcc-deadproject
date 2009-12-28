@@ -2617,7 +2617,7 @@ void CpyToFPS3(void *ptr) __naked
 
 void CpyToStack(unsigned char bytes, void *freebyte, void *from) __naked
 {
-  bytes; freebyte; copyto;
+  bytes; freebyte; from;
   __asm
     push iy
     ld iy,#flags___dw
