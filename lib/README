@@ -1,0 +1,4 @@
+Notes:
+  * B_CALLs that "destroy all" -- includes ix (until proven otherwise)
+  * Some B_CALLs that check flags need TIOS' iy value (so save ours
+    first, and restore theirs' before B_CALLing, then restore ours)

@@ -1,4 +1,4 @@
-- Figure out what needs to go in a stdlib
-  - Finish wrapping all of the 83+ bcalls
+- Finish wrapping all of the 83+ bcalls
 - Figure out how system install will work.
 - Docs.
+- Add default include path, lib path to libtisdcc.
