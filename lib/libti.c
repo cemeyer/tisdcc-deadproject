@@ -10,10 +10,13 @@ unsigned char Bit_VertSplit() __naked
 {
   __asm
     ld l,#1
+    push iy           ; save our iy value
+    ld iy,#flags___dw ; load TIOS' iy value
     BCALL(_Bit_VertSplit___db)
     jr nz,screen_is_split
     dec l
 screen_is_split:
+    pop iy            ; restore iy
     ret
   __endasm;
 }
@@ -22,10 +25,13 @@ unsigned char CheckSplitFlag() __naked
 {
   __asm
     ld l,#0
+    push iy           ; save our iy value
+    ld iy,#flags___dw ; load TIOS' iy value
     BCALL(_CheckSplitFlag___db)
     jr z,split_inactive
     inc l
 split_inactive:
+    pop iy            ; restore iy
     ret
   __endasm;
 }
