@@ -4627,4 +4627,63 @@ void SendVarCmd() __naked
     ret
   __endasm;
 }
+
+void ApdSetup() __naked
+{
+  __asm
+    push hl
+    push iy
+    ld iy,#flags___dw
+    BCALL(_ApdSetup___db)
+    pop iy
+    pop hl
+    ret
+  __endasm;
+}
+
+void CanAlphIns() __naked
+{
+  __asm
+    push iy
+    ld iy,#flags___dw
+    BCALL(_CanAlphaIns___db)
+    pop iy
+    ret
+  __endasm;
+}
+
+unsigned char GetCSC() __naked
+{
+  __asm
+    push iy
+    push af
+    push hl
+    ld iy,#flags___dw
+    BCALL(_GetCSC___db)
+    pop hl
+    ld l,a
+    pop af
+    pop iy
+    ret
+  __endasm;
+}
+
+unsigned char GetKey() __naked
+{
+  __asm
+    push iy
+    push de
+    ld l,a
+    push hl
+    ld iy,#flags___dw
+    BCALL(_GetKey___db)
+    pop hl
+    ld d,a
+    ld a,l
+    ld l,d
+    pop de
+    pop iy
+    ret
+  __endasm;
+}
 #endif

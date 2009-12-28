@@ -235,4 +235,8 @@ unsigned char Rec1stByteNC();
 unsigned char RecAByteIO();
 void SendAByte(unsigned char byte);
 void SendVarCmd();
+void ApdSetup();
+void CanAlphIns();
+unsigned char GetCSC();
+unsigned char GetKey();
 #endif
