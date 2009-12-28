@@ -1387,4 +1387,94 @@ void JErrorNo() __naked
     ret
   __endasm;
 }
+
+void AllocFPS(unsigned int entries) __naked
+{
+  entries;
+  __asm
+    push iy
+    ld iy,#flags___dw
+    push ix
+    push hl
+    push de
+    push bc
+    push af
+    ld hl,#14
+    add hl,sp
+    ld a,(hl)
+    inc hl
+    ld h,(hl)
+    ld l,a
+    BCALL(_AllocFPS___db)
+    pop af
+    pop bc
+    pop de
+    pop hl
+    pop ix
+    pop iy
+    ret
+  __endasm;
+}
+
+void AllocFPS1(unsigned int size) __naked
+{
+  size;
+  __asm
+    push iy
+    ld iy,#flags___dw
+    push ix
+    push hl
+    push de
+    push bc
+    push af
+    ld hl,#14
+    add hl,sp
+    ld a,(hl)
+    inc hl
+    ld h,(hl)
+    ld l,a
+    BCALL(_AllocFPS1___db)
+    pop af
+    pop bc
+    pop de
+    pop hl
+    pop ix
+    pop iy
+    ret
+  __endasm;
+}
+
+void CpyStack(unsigned char bytes, void *freebyte, void *copyto) __naked
+{
+  bytes; freebyte; copyto;
+  __asm
+    push iy
+    ld iy,#flags___dw
+    push ix
+    push hl
+    push de
+    push bc
+    push af
+    ld hl,#14
+    ld c,(hl)
+    inc hl
+    ld e,(hl)
+    inc hl
+    ld d,(hl)
+    inc hl
+    ld b,(hl)
+    inc hl
+    ld h,(hl)
+    ld l,b
+    ex de,hl
+    BCALL(_CpyStack___db)
+    pop af
+    pop bc
+    pop de
+    pop hl
+    pop ix
+    pop iy
+    ret
+  __endasm;
+}
 #endif
