@@ -2,3 +2,4 @@
 - Figure out how system install will work.
 - Docs.
 - Add default include path, lib path to libtisdcc.
+- Make tisdcc show sdcc output if there is any

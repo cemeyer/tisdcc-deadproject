@@ -1,4 +1,6 @@
 Notes:
   * B_CALLs that "destroy all" -- includes ix (until proven otherwise)
+    * Do we care about AF? I think SDCC expects Acc trashing across
+      function calls, but I'm not sure.
   * Some B_CALLs that check flags need TIOS' iy value (so save ours
     first, and restore theirs' before B_CALLing, then restore ours)
