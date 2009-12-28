@@ -2506,4 +2506,518 @@ void CpyTo6FPS3() __naked
     ret
   __endasm;
 }
+
+void CpyToFPST(void *ptr) __naked
+{
+  ptr;
+  __asm
+    push iy
+    push ix
+    push hl
+    push de
+    push bc
+    push af
+    ld hl,#14
+    add hl,sp
+    ld e,(hl)
+    inc hl
+    ld d,(hl)
+    ld iy,#flags___dw
+    BCALL(_CpyToFPST___db)
+    pop af
+    pop bc
+    pop de
+    pop hl
+    pop ix
+    pop iy
+    ret
+  __endasm;
+}
+
+void CpyToFPS1(void *ptr) __naked
+{
+  ptr;
+  __asm
+    push iy
+    push ix
+    push hl
+    push de
+    push bc
+    push af
+    ld hl,#14
+    add hl,sp
+    ld e,(hl)
+    inc hl
+    ld d,(hl)
+    ld iy,#flags___dw
+    BCALL(_CpyToFPS1___db)
+    pop af
+    pop bc
+    pop de
+    pop hl
+    pop ix
+    pop iy
+    ret
+  __endasm;
+}
+
+void CpyToFPS2(void *ptr) __naked
+{
+  ptr;
+  __asm
+    push iy
+    push ix
+    push hl
+    push de
+    push bc
+    push af
+    ld hl,#14
+    add hl,sp
+    ld e,(hl)
+    inc hl
+    ld d,(hl)
+    ld iy,#flags___dw
+    BCALL(_CpyToFPS2___db)
+    pop af
+    pop bc
+    pop de
+    pop hl
+    pop ix
+    pop iy
+    ret
+  __endasm;
+}
+
+void CpyToFPS3(void *ptr) __naked
+{
+  ptr;
+  __asm
+    push iy
+    push ix
+    push hl
+    push de
+    push bc
+    push af
+    ld hl,#14
+    add hl,sp
+    ld e,(hl)
+    inc hl
+    ld d,(hl)
+    ld iy,#flags___dw
+    BCALL(_CpyToFPS3___db)
+    pop af
+    pop bc
+    pop de
+    pop hl
+    pop ix
+    pop iy
+    ret
+  __endasm;
+}
+
+void CpyToStack(unsigned char bytes, void *freebyte, void *from) __naked
+{
+  bytes; freebyte; copyto;
+  __asm
+    push iy
+    ld iy,#flags___dw
+    push ix
+    push hl
+    push de
+    push bc
+    push af
+    ld hl,#14
+    ld c,(hl)
+    inc hl
+    ld e,(hl)
+    inc hl
+    ld d,(hl)
+    inc hl
+    ld b,(hl)
+    inc hl
+    ld h,(hl)
+    ld l,b
+    ex de,hl
+    BCALL(_CpyToStack___db)
+    pop af
+    pop bc
+    pop de
+    pop hl
+    pop ix
+    pop iy
+    ret
+  __endasm;
+}
+
+void PopMCplxO1() __naked
+{
+  __asm
+    push iy
+    push ix
+    push hl
+    push de
+    push bc
+    push af
+    ld iy,#flags___dw
+    BCALL(_PopMCplxO1___db)
+    pop af
+    pop bc
+    pop de
+    pop hl
+    pop ix
+    pop iy
+    ret
+  __endasm;
+}
+
+void PopOP1() __naked
+{
+  __asm
+    push iy
+    push ix
+    push hl
+    push de
+    push bc
+    push af
+    ld iy,#flags___dw
+    BCALL(_PopOP1___db)
+    pop af
+    pop bc
+    pop de
+    pop hl
+    pop ix
+    pop iy
+    ret
+  __endasm;
+}
+
+void PopOP3() __naked
+{
+  __asm
+    push iy
+    push ix
+    push hl
+    push de
+    push bc
+    push af
+    ld iy,#flags___dw
+    BCALL(_PopOP3___db)
+    pop af
+    pop bc
+    pop de
+    pop hl
+    pop ix
+    pop iy
+    ret
+  __endasm;
+}
+
+void PopOP5() __naked
+{
+  __asm
+    push iy
+    push ix
+    push hl
+    push de
+    push bc
+    push af
+    ld iy,#flags___dw
+    BCALL(_PopOP5___db)
+    pop af
+    pop bc
+    pop de
+    pop hl
+    pop ix
+    pop iy
+    ret
+  __endasm;
+}
+
+void PopReal(void *ptr) __naked
+{
+  ptr;
+  __asm
+    push iy
+    push ix
+    push hl
+    push de
+    push bc
+    ld hl,#14
+    add hl,sp
+    ld e,(hl)
+    inc hl
+    ld d,(hl)
+    ld iy,#flags___dw
+    BCALL(_PopReal___db)
+    pop bc
+    pop de
+    pop hl
+    pop ix
+    pop iy
+    ret
+  __endasm;
+}
+
+void PopRealO1() __naked
+{
+  __asm
+    push iy
+    ld iy,#flags___dw
+    BCALL(_PopRealO1___db)
+    pop iy
+    ret
+  __endasm;
+}
+
+void PopRealO2() __naked
+{
+  __asm
+    push iy
+    ld iy,#flags___dw
+    BCALL(_PopRealO2___db)
+    pop iy
+    ret
+  __endasm;
+}
+
+void PopRealO3() __naked
+{
+  __asm
+    push iy
+    ld iy,#flags___dw
+    BCALL(_PopRealO3___db)
+    pop iy
+    ret
+  __endasm;
+}
+
+void PopRealO4() __naked
+{
+  __asm
+    push iy
+    ld iy,#flags___dw
+    BCALL(_PopRealO4___db)
+    pop iy
+    ret
+  __endasm;
+}
+
+void PopRealO5() __naked
+{
+  __asm
+    push iy
+    ld iy,#flags___dw
+    BCALL(_PopRealO5___db)
+    pop iy
+    ret
+  __endasm;
+}
+
+void PopRealO6() __naked
+{
+  __asm
+    push iy
+    ld iy,#flags___dw
+    BCALL(_PopRealO6___db)
+    pop iy
+    ret
+  __endasm;
+}
+
+void PushMCplxO1() __naked
+{
+  __asm
+    push iy
+    push ix
+    push hl
+    push de
+    push bc
+    push af
+    ld iy,#flags___dw
+    BCALL(_PushMCplxO1___db)
+    pop af
+    pop bc
+    pop de
+    pop hl
+    pop ix
+    pop iy
+    ret
+  __endasm;
+}
+
+void PushMCplxO3() __naked
+{
+  __asm
+    push iy
+    push ix
+    push hl
+    push de
+    push bc
+    push af
+    ld iy,#flags___dw
+    BCALL(_PushMCplxO3___db)
+    pop af
+    pop bc
+    pop de
+    pop hl
+    pop ix
+    pop iy
+    ret
+  __endasm;
+}
+
+void PushOP1() __naked
+{
+  __asm
+    push iy
+    push ix
+    push hl
+    push de
+    push bc
+    push af
+    ld iy,#flags___dw
+    BCALL(_PushOP1___db)
+    pop af
+    pop bc
+    pop de
+    pop hl
+    pop ix
+    pop iy
+    ret
+  __endasm;
+}
+
+void PushOP3() __naked
+{
+  __asm
+    push iy
+    push ix
+    push hl
+    push de
+    push bc
+    push af
+    ld iy,#flags___dw
+    BCALL(_PushOP3___db)
+    pop af
+    pop bc
+    pop de
+    pop hl
+    pop ix
+    pop iy
+    ret
+  __endasm;
+}
+
+void PushOP5() __naked
+{
+  __asm
+    push iy
+    push ix
+    push hl
+    push de
+    push bc
+    push af
+    ld iy,#flags___dw
+    BCALL(_PushOP5___db)
+    pop af
+    pop bc
+    pop de
+    pop hl
+    pop ix
+    pop iy
+    ret
+  __endasm;
+}
+
+void PushReal(void *ptr) __naked
+{
+  __asm
+    push iy
+    push ix
+    push hl
+    push de
+    push bc
+    push af
+    ld hl,#14
+    ld a,(hl)
+    inc hl
+    ld h,(hl)
+    ld l,a
+    ld iy,#flags___dw
+    BCALL(_PushReal___db)
+    pop af
+    pop bc
+    pop de
+    pop hl
+    pop ix
+    pop iy
+    ret
+  __endasm;
+}
+
+void PushRealO1() __naked
+{
+  __asm
+    push iy
+    ld iy,#flags___dw
+    BCALL(_PushRealO1___db)
+    pop iy
+    ret
+  __endasm;
+}
+
+void PushRealO2() __naked
+{
+  __asm
+    push iy
+    ld iy,#flags___dw
+    BCALL(_PushRealO2___db)
+    pop iy
+    ret
+  __endasm;
+}
+
+void PushRealO3() __naked
+{
+  __asm
+    push iy
+    ld iy,#flags___dw
+    BCALL(_PushRealO3___db)
+    pop iy
+    ret
+  __endasm;
+}
+
+void PushRealO4() __naked
+{
+  __asm
+    push iy
+    ld iy,#flags___dw
+    BCALL(_PushRealO4___db)
+    pop iy
+    ret
+  __endasm;
+}
+
+void PushRealO5() __naked
+{
+  __asm
+    push iy
+    ld iy,#flags___dw
+    BCALL(_PushRealO5___db)
+    pop iy
+    ret
+  __endasm;
+}
+
+void PushRealO6() __naked
+{
+  __asm
+    push iy
+    ld iy,#flags___dw
+    BCALL(_PushRealO6___db)
+    pop iy
+    ret
+  __endasm;
+}
 #endif
