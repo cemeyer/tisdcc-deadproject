@@ -228,4 +228,11 @@ void ZmUsr();
 void ZooDefault();
 unsigned long DivHLBy10(unsigned int hl);
 unsigned long DivHLByA(unsigned int hl, unsigned char a);
+void AppGetCalc();
+void AppGetCbl();
+unsigned char Rec1stByte();
+unsigned char Rec1stByteNC();
+unsigned char RecAByteIO();
+void SendAByte(unsigned char byte);
+void SendVarCmd();
 #endif

@@ -4470,4 +4470,161 @@ unsigned long DivHLByA(unsigned int hl, unsigned char a) __naked
     ret
   __endasm;
 }
+
+void AppGetCalc() __naked
+{
+  __asm
+    push af
+    push bc
+    push de
+    push hl
+    push ix
+    push iy
+    ld iy,#flags___dw
+    BCALL(_AppGetCalc___db)
+    pop iy
+    pop ix
+    pop hl
+    pop de
+    pop bc
+    pop af
+    ret
+  __endasm;
+}
+
+void AppGetCbl() __naked
+{
+  __asm
+    push af
+    push bc
+    push de
+    push hl
+    push ix
+    push iy
+    ld iy,#flags___dw
+    BCALL(_AppGetCbl___db)
+    pop iy
+    pop ix
+    pop hl
+    pop de
+    pop bc
+    pop af
+    ret
+  __endasm;
+}
+
+unsigned char Rec1stByte() __naked
+{
+  __asm
+    push bc
+    push de
+    push ix
+    push iy
+    ld l,a
+    push hl
+    ld iy,#flags___dw
+    BCALL(_Rec1stByte___db)
+    pop hl
+    ld b,a
+    ld a,l
+    ld l,b
+    pop iy
+    pop ix
+    pop de
+    pop bc
+    ret
+  __endasm;
+}
+
+unsigned char Rec1stByteNC() __naked
+{
+  __asm
+    push bc
+    push de
+    push ix
+    push iy
+    ld l,a
+    push hl
+    ld iy,#flags___dw
+    BCALL(_Rec1stByteNC___db)
+    pop hl
+    ld b,a
+    ld a,l
+    ld l,b
+    pop iy
+    pop ix
+    pop de
+    pop bc
+    ret
+  __endasm;
+}
+
+unsigned char RecAByteIO() __naked
+{
+  __asm
+    push bc
+    push de
+    push ix
+    push iy
+    ld l,a
+    push hl
+    ld iy,#flags___dw
+    BCALL(_RecAByteIO___db)
+    pop hl
+    ld b,a
+    ld a,l
+    ld l,b
+    pop iy
+    pop ix
+    pop de
+    pop bc
+    ret
+  __endasm;
+}
+
+void SendAByte(unsigned char byte) __naked
+{
+  byte;
+  __asm
+    push bc
+    push de
+    push ix
+    push iy
+    push hl
+    push af
+    ld iy,#flags___dw
+    ld hl,#14
+    add hl,sp
+    ld a,(hl)
+    BCALL(_SendAByte___db)
+    pop af
+    pop hl
+    pop iy
+    pop ix
+    pop de
+    pop bc
+    ret
+  __endasm;
+}
+
+void SendVarCmd() __naked
+{
+  __asm
+    push bc
+    push de
+    push ix
+    push iy
+    push hl
+    push af
+    ld iy,#flags___dw
+    BCALL(_SendVarCmd___db)
+    pop af
+    pop hl
+    pop iy
+    pop ix
+    pop de
+    pop bc
+    ret
+  __endasm;
+}
 #endif
