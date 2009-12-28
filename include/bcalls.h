@@ -157,4 +157,73 @@ void PushRealO3();
 void PushRealO4();
 void PushRealO5();
 void PushRealO6();
+void AllEq(unsigned char flags);
+void BufClr(void *ptr);
+void BufCpy(void *ptr);
+void CircCmd();
+void ClearRect(unsigned char row1, unsigned char col1, unsigned char row2,
+    unsigned char col2);
+void CLine();
+void CLineS();
+void CPoint(unsigned char op);
+void CPointS(unsigned char op);
+void DarkLine(unsigned char x1, unsigned char y1, unsigned char x2,
+    unsigned char y2);
+void DarkPnt();
+void Disp();
+void DrawCirc2();
+void DrawCmd();
+void DrawRectBorder(unsigned char row1, unsigned char col1,
+    unsigned char row2, unsigned char col2);
+void DrawRectBorderClear(unsigned char row1, unsigned char col1,
+    unsigned char row2, unsigned char col2);
+void EraseRectBorder(unsigned char row1, unsigned char col1,
+    unsigned char row2, unsigned char col2);
+void FillRect(unsigned char row1, unsigned char col1,
+    unsigned char row2, unsigned char col2);
+void FillRectPattern(unsigned char row1, unsigned char col1,
+    unsigned char row2, unsigned char col2);
+void GrBufClr();
+void GrBufCpy();
+void GrphCirc();
+void HorizCmd();
+unsigned char IBounds(unsigned char x, unsigned char y);
+unsigned char IBoundsFull(unsigned char x, unsigned char y);
+void ILine(unsigned char x1, unsigned char y1, unsigned char x2,
+    unsigned char y2, unsigned char type);
+void InvCmd();
+void InvertRect(unsigned char row1, unsigned char col1,
+    unsigned char row2, unsigned char col2);
+unsigned long IOffset(unsigned char col, unsigned char row);
+unsigned char IPoint(unsigned char col, unsigned char row,
+    unsigned char func);
+void LineCmd();
+void PDspGrph();
+unsigned char PixelTest();
+void PointCmd(unsigned char cmd);
+void PointOn(unsigned char x, unsigned char y);
+void Regraph();
+void SetAllPlots(unsigned char select);
+void SetFuncM();
+void SetParM();
+void SetPolM();
+void SetSeqM();
+void SetTblGraphDraw();
+void TanLnF();
+void UCLineS();
+void UnLineCmd();
+void VertCmd();
+void VtoWHLDE(unsigned char x, unsigned char y);
+unsigned char XftoI(void *ptr);
+void Xitof(unsigned char x, void *ptr);
+unsigned char YftoI(void *ptr);
+void ZmDecml();
+void ZmFit();
+void ZmInt();
+void ZmPrev();
+void ZmSquare();
+void ZmStats();
+void ZmTrig();
+void ZmUsr();
+void ZooDefault();
 #endif

@@ -40,18 +40,22 @@ void ClearRow(unsigned char a) __naked
 {
   a;
   __asm
-    push ix
-    push de
+    push hl
     push bc
+    inc sp
     push af
-    ld ix,#0
-    add ix,sp
-    ld a,10(ix) ; stack is AF, BC, DE, IX, RA, A
+    inc sp
+    ld hl,#6
+    add hl,sp
+    ld a,(hl) ; stack is AF, BC, DE, IX, RA, A
+    ex de,hl
     BCALL(_ClearRow___db)
-    pop af
+    ex de,hl
+    ld l,c
     pop bc
-    pop de
-    pop ix
+    ld a,c
+    ld c,l
+    pop hl
     ret
   __endasm;
 }
@@ -939,7 +943,7 @@ unsigned char IsEditEmpty() __naked
     ld a,l
     pop de
     pop iy
-    ld l,1
+    ld l,#1
     ret z
     dec l
     ret
@@ -3016,6 +3020,1410 @@ void PushRealO6() __naked
     push iy
     ld iy,#flags___dw
     BCALL(_PushRealO6___db)
+    pop iy
+    ret
+  __endasm;
+}
+
+void AllEq(unsigned char flags) __naked
+{
+  flags;
+  __asm
+    push iy
+    push ix
+    push hl
+    push de
+    push bc
+    push af
+    ld iy,#flags___dw
+    ld hl,#14
+    add hl,sp
+    ld a,(hl)
+    BCALL(_AllEq___db)
+    pop af
+    pop bc
+    pop de
+    pop hl
+    pop ix
+    pop iy
+    ret
+  __endasm;
+}
+
+void BufClr(void *ptr) __naked
+{
+  ptr;
+  __asm
+    push iy
+    push ix
+    push hl
+    push de
+    push bc
+    push af
+    ld iy,#flags___dw
+    ld hl,#14
+    add hl,sp
+    ld a,(hl)
+    inc hl
+    ld h,(hl)
+    ld l,a
+    BCALL(_BufClr___db)
+    pop af
+    pop bc
+    pop de
+    pop hl
+    pop ix
+    pop iy
+    ret
+  __endasm;
+}
+
+void BufCpy(void *ptr) __naked
+{
+  ptr;
+  __asm
+    push iy
+    push ix
+    push hl
+    push de
+    push bc
+    push af
+    ld iy,#flags___dw
+    ld hl,#14
+    add hl,sp
+    ld a,(hl)
+    inc hl
+    ld h,(hl)
+    ld l,a
+    BCALL(_BufCpy___db)
+    pop af
+    pop bc
+    pop de
+    pop hl
+    pop ix
+    pop iy
+    ret
+  __endasm;
+}
+
+void CircCmd() __naked
+{
+  __asm
+    push iy
+    push ix
+    push hl
+    push de
+    push bc
+    push af
+    ld iy,#flags___dw
+    BCALL(_CircCmd___db)
+    pop af
+    pop bc
+    pop de
+    pop hl
+    pop ix
+    pop iy
+    ret
+  __endasm;
+}
+
+void ClearRect(unsigned char row1, unsigned char col1, unsigned char row2,
+    unsigned char col2) __naked
+{
+  __asm
+    push iy
+    push ix
+    push hl
+    push de
+    push bc
+    push af
+    ld iy,#flags___dw
+    ld hl,#17
+    add hl,sp
+    ld e,(hl)
+    dec hl
+    ld d,(hl)
+    dec hl
+    ld c,(hl)
+    dec hl
+    ld h,(hl)
+    ld l,c
+    BCALL(_ClearRect___db)
+    pop af
+    pop bc
+    pop de
+    pop hl
+    pop ix
+    pop iy
+    ret
+  __endasm;
+}
+
+void CLine() __naked
+{
+  __asm
+    push iy
+    push ix
+    push hl
+    push de
+    push bc
+    push af
+    ld iy,#flags___dw
+    BCALL(_CLine___db)
+    pop af
+    pop bc
+    pop de
+    pop hl
+    pop ix
+    pop iy
+    ret
+  __endasm;
+}
+
+void CLineS() __naked
+{
+  __asm
+    push iy
+    push ix
+    push hl
+    push de
+    push bc
+    push af
+    ld iy,#flags___dw
+    BCALL(_CLineS___db)
+    pop af
+    pop bc
+    pop de
+    pop hl
+    pop ix
+    pop iy
+    ret
+  __endasm;
+}
+
+void CPoint(unsigned char op) __naked
+{
+  op;
+  __asm
+    push iy
+    push ix
+    push hl
+    push de
+    push bc
+    push af
+    ld hl,#14
+    add hl,sp
+    ld a,(hl)
+    ld iy,#flags___dw
+    BCALL(_CPoint___db)
+    pop af
+    pop bc
+    pop de
+    pop hl
+    pop ix
+    pop iy
+    ret
+  __endasm;
+}
+
+void CPointS(unsigned char op) __naked
+{
+  op;
+  __asm
+    push iy
+    push ix
+    push hl
+    push de
+    push bc
+    push af
+    ld hl,#14
+    add hl,sp
+    ld a,(hl)
+    ld iy,#flags___dw
+    BCALL(_CPointS___db)
+    pop af
+    pop bc
+    pop de
+    pop hl
+    pop ix
+    pop iy
+    ret
+  __endasm;
+}
+
+void DarkLine(unsigned char x1, unsigned char y1, unsigned char x2,
+    unsigned char y2) __naked
+{
+  x1; y1; x2; y2;
+  __asm
+    push iy
+    push hl
+    push de
+    push bc
+    ld hl,#10
+    add hl,sp
+    ld b,(hl)
+    inc hl
+    ld c,(hl)
+    inc hl
+    ld d,(hl)
+    inc hl
+    ld e,(hl)
+    ld iy,#flags___dw
+    BCALL(_DarkLine___db)
+    pop bc
+    pop de
+    pop hl
+    pop iy
+    ret
+  __endasm;
+}
+
+void DarkPnt() __naked
+{
+  __asm
+    push iy
+    push ix
+    push hl
+    push de
+    push bc
+    push af
+    ld iy,#flags___dw
+    BCALL(_DarkPnt___db)
+    pop af
+    pop bc
+    pop de
+    pop hl
+    pop ix
+    pop iy
+    ret
+  __endasm;
+}
+
+void Disp() __naked
+{
+  __asm
+    push iy
+    push ix
+    push hl
+    push de
+    push bc
+    push af
+    ld iy,#flags___dw
+    BCALL(_Disp___db)
+    pop af
+    pop bc
+    pop de
+    pop hl
+    pop ix
+    pop iy
+    ret
+  __endasm;
+}
+
+void DrawCirc2() __naked
+{
+  __asm
+    push iy
+    push ix
+    push hl
+    push de
+    push bc
+    push af
+    ld iy,#flags___dw
+    BCALL(_DrawCirc2___db)
+    pop af
+    pop bc
+    pop de
+    pop hl
+    pop ix
+    pop iy
+    ret
+  __endasm;
+}
+
+void DrawCmd() __naked
+{
+  __asm
+    push iy
+    push ix
+    push hl
+    push de
+    push bc
+    push af
+    ld iy,#flags___dw
+    BCALL(_DrawCmd___db)
+    pop af
+    pop bc
+    pop de
+    pop hl
+    pop ix
+    pop iy
+    ret
+  __endasm;
+}
+
+void DrawRectBorder(unsigned char row1, unsigned char col1,
+    unsigned char row2, unsigned char col2) __naked
+{
+  row1; col1; row2; col2;
+  __asm
+    push iy
+    push ix
+    push hl
+    push de
+    push bc
+    push af
+    ld hl,#17
+    add hl,sp
+    ld e,(hl)
+    dec hl
+    ld d,(hl)
+    dec hl
+    ld a,(hl)
+    dec hl
+    ld h,(hl)
+    ld l,a
+    ld iy,#flags___dw
+    BCALL(_DrawRectBorder___db)
+    pop af
+    pop bc
+    pop de
+    pop hl
+    pop ix
+    pop iy
+    ret
+  __endasm;
+}
+
+void DrawRectBorderClear(unsigned char row1, unsigned char col1,
+    unsigned char row2, unsigned char col2) __naked
+{
+  row1; col1; row2; col2;
+  __asm
+    push iy
+    push ix
+    push hl
+    push de
+    push bc
+    push af
+    ld hl,#17
+    add hl,sp
+    ld e,(hl)
+    dec hl
+    ld d,(hl)
+    dec hl
+    ld a,(hl)
+    dec hl
+    ld h,(hl)
+    ld l,a
+    ld iy,#flags___dw
+    BCALL(_DrawRectBorderClear___db)
+    pop af
+    pop bc
+    pop de
+    pop hl
+    pop ix
+    pop iy
+    ret
+  __endasm;
+}
+
+void EraseRectBorder(unsigned char row1, unsigned char col1,
+    unsigned char row2, unsigned char col2) __naked
+{
+  row1; col1; row2; col2;
+  __asm
+    push iy
+    push ix
+    push hl
+    push de
+    push bc
+    push af
+    ld hl,#17
+    add hl,sp
+    ld e,(hl)
+    dec hl
+    ld d,(hl)
+    dec hl
+    ld a,(hl)
+    dec hl
+    ld h,(hl)
+    ld l,a
+    ld iy,#flags___dw
+    BCALL(_EraseRectBorder___db)
+    pop af
+    pop bc
+    pop de
+    pop hl
+    pop ix
+    pop iy
+    ret
+  __endasm;
+}
+
+void FillRect(unsigned char row1, unsigned char col1,
+    unsigned char row2, unsigned char col2) __naked
+{
+  row1; col1; row2; col2;
+  __asm
+    push iy
+    push ix
+    push hl
+    push de
+    push bc
+    push af
+    ld hl,#17
+    add hl,sp
+    ld e,(hl)
+    dec hl
+    ld d,(hl)
+    dec hl
+    ld a,(hl)
+    dec hl
+    ld h,(hl)
+    ld l,a
+    ld iy,#flags___dw
+    BCALL(_FillRect___db)
+    pop af
+    pop bc
+    pop de
+    pop hl
+    pop ix
+    pop iy
+    ret
+  __endasm;
+}
+
+void FillRectPattern(unsigned char row1, unsigned char col1,
+    unsigned char row2, unsigned char col2) __naked
+{
+  row1; col1; row2; col2;
+  __asm
+    push iy
+    push ix
+    push hl
+    push de
+    push bc
+    push af
+    ld hl,#17
+    add hl,sp
+    ld e,(hl)
+    dec hl
+    ld d,(hl)
+    dec hl
+    ld a,(hl)
+    dec hl
+    ld h,(hl)
+    ld l,a
+    ld iy,#flags___dw
+    BCALL(_FillRectPattern___db)
+    pop af
+    pop bc
+    pop de
+    pop hl
+    pop ix
+    pop iy
+    ret
+  __endasm;
+}
+
+void GrBufClr() __naked
+{
+  __asm
+    push iy
+    push ix
+    push hl
+    push de
+    push bc
+    push af
+    ld iy,#flags___dw
+    BCALL(_GrBufClr___db)
+    pop af
+    pop bc
+    pop de
+    pop hl
+    pop ix
+    pop iy
+    ret
+  __endasm;
+}
+
+void GrBufCpy() __naked
+{
+  __asm
+    push iy
+    push ix
+    push hl
+    push de
+    push bc
+    push af
+    ld iy,#flags___dw
+    BCALL(_GrBufCpy___db)
+    pop af
+    pop bc
+    pop de
+    pop hl
+    pop ix
+    pop iy
+    ret
+  __endasm;
+}
+
+void GrphCirc() __naked
+{
+  __asm
+    push iy
+    push ix
+    push hl
+    push de
+    push bc
+    push af
+    ld iy,#flags___dw
+    BCALL(_GrphCirc___db)
+    pop af
+    pop bc
+    pop de
+    pop hl
+    pop ix
+    pop iy
+    ret
+  __endasm;
+}
+
+void HorizCmd() __naked
+{
+  __asm
+    push iy
+    push ix
+    push hl
+    push de
+    push bc
+    push af
+    ld iy,#flags___dw
+    BCALL(_HorizCmd___db)
+    pop af
+    pop bc
+    pop de
+    pop hl
+    pop ix
+    pop iy
+    ret
+  __endasm;
+}
+
+unsigned char IBounds(unsigned char x, unsigned char y) __naked
+{
+  __asm
+    push iy
+    push bc
+    push hl
+    ld iy,#flags___dw
+    ld hl,#8
+    add hl,sp
+    ld b,(hl)
+    inc hl
+    ld c,(hl)
+    BCALL(_IBounds___db)
+    pop hl
+    pop bc
+    pop iy
+    ld l,#1
+    ret c
+    dec l
+    ret
+  __endasm;
+}
+
+unsigned char IBoundsFull(unsigned char x, unsigned char y) __naked
+{
+  __asm
+    push iy
+    push bc
+    push hl
+    ld iy,#flags___dw
+    ld hl,#8
+    add hl,sp
+    ld b,(hl)
+    inc hl
+    ld c,(hl)
+    BCALL(_IBoundsFull___db)
+    pop hl
+    pop bc
+    pop iy
+    ld l,#1
+    ret c
+    dec l
+    ret
+  __endasm;
+}
+
+void ILine(unsigned char x1, unsigned char y1, unsigned char x2,
+    unsigned char y2, unsigned char type) __naked
+{
+  x1; y1; x2; y2; type;
+  __asm
+    push iy
+    push hl
+    push de
+    push bc
+    ld hl,#10
+    add hl,sp
+    ld b,(hl)
+    inc hl
+    ld c,(hl)
+    inc hl
+    ld d,(hl)
+    inc hl
+    ld e,(hl)
+    inc hl
+    ld h,(hl)
+    ld iy,#flags___dw
+    BCALL(_ILine___db)
+    pop bc
+    pop de
+    pop hl
+    pop iy
+    ret
+  __endasm;
+}
+
+void InvCmd() __naked
+{
+  __asm
+    push iy
+    push ix
+    push hl
+    push de
+    push bc
+    push af
+    ld iy,#flags___dw
+    BCALL(_InvCmd___db)
+    pop af
+    pop bc
+    pop de
+    pop hl
+    pop ix
+    pop iy
+    ret
+  __endasm;
+}
+
+void InvertRect(unsigned char row1, unsigned char col1,
+    unsigned char row2, unsigned char col2) __naked
+{
+  row1; col1; row2; col2;
+  __asm
+    push iy
+    push hl
+    push de
+    push af
+    ld hl,#13
+    add hl,sp
+    ld e,(hl)
+    dec hl
+    ld d,(hl)
+    dec hl
+    ld a,(hl)
+    dec hl
+    ld h,(hl)
+    ld l,a
+    ld iy,#flags___dw
+    BCALL(_InvertRect___db)
+    pop af
+    pop de
+    pop hl
+    pop iy
+    ret
+  __endasm;
+}
+
+unsigned long IOffset(unsigned char col, unsigned char row) __naked
+{
+  row; col;
+  __asm
+    push iy
+    push ix
+    push bc
+    push af
+    ld hl,#10
+    add hl,sp
+    ld b,(hl)
+    inc hl
+    ld c,(hl)
+    ld iy,#flags___dw
+    BCALL(_IOffset___db)
+    ld d,#0
+    ld e,a
+    pop af
+    pop bc
+    pop ix
+    pop iy
+    ret
+  __endasm;
+}
+
+unsigned char IPoint(unsigned char col, unsigned char row,
+    unsigned char func) __naked
+{
+  col; row; func;
+  __asm
+    push iy
+    push ix
+    push bc
+    push de
+    push af
+    push hl
+    ld hl,#14
+    add hl,sp
+    ld b,(hl)
+    inc hl
+    ld c,(hl)
+    inc hl
+    ld d,(hl)
+    BCALL(_IPoint___db)
+    pop hl
+    ld l,1
+    jr z,point_is_off
+    dec l
+point_is_off:
+    pop af
+    pop de
+    pop bc
+    pop ix
+    pop iy
+    ret
+  __endasm;
+}
+
+void LineCmd() __naked
+{
+  __asm
+    push iy
+    push ix
+    push hl
+    push de
+    push bc
+    push af
+    ld iy,#flags___dw
+    BCALL(_LineCmd___db)
+    pop af
+    pop bc
+    pop de
+    pop hl
+    pop ix
+    pop iy
+    ret
+  __endasm;
+}
+
+void PDspGrph() __naked
+{
+  __asm
+    push iy
+    push ix
+    push hl
+    push de
+    push bc
+    push af
+    ld iy,#flags___dw
+    BCALL(_PDspGrph___db)
+    pop af
+    pop bc
+    pop de
+    pop hl
+    pop ix
+    pop iy
+    ret
+  __endasm;
+}
+
+unsigned char PixelTest() __naked
+{
+  __asm
+    push af
+    push iy
+    push ix
+    push de
+    push bc
+    push hl
+    ld iy,#flags___dw
+    BCALL(_PixelTest___db)
+    pop hl
+    ld l,1
+    jr z,__point_is_off
+    dec l
+__point_is_off:
+    pop bc
+    pop de
+    pop ix
+    pop iy
+    pop af
+    ret
+  __endasm;
+}
+
+void PointCmd(unsigned char cmd) __naked
+{
+  cmd;
+  __asm
+    push iy
+    push ix
+    push hl
+    push de
+    push bc
+    push af
+    ld hl,#14
+    add hl,sp
+    ld a,(hl)
+    ld iy,#flags___dw
+    BCALL(_PointCmd___db)
+    pop af
+    pop bc
+    pop de
+    pop hl
+    pop ix
+    pop iy
+    ret
+  __endasm;
+}
+
+void PointOn(unsigned char x, unsigned char y) __naked
+{
+  x; y;
+  __asm
+    push iy
+    push hl
+    push bc
+    ld hl,#8
+    add hl,sp
+    ld b,(hl)
+    inc hl
+    ld c,(hl)
+    ld iy,#flags___dw
+    ex de,hl
+    BCALL(_PointOn___db)
+    ex de,hl
+    pop bc
+    pop hl
+    pop iy
+    ret
+  __endasm;
+}
+
+void Regraph() __naked
+{
+  __asm
+    push iy
+    push ix
+    push hl
+    push de
+    push bc
+    ld iy,#flags___dw
+    BCALL(_Regraph___db)
+    pop bc
+    pop de
+    pop hl
+    pop ix
+    pop iy
+    ret
+  __endasm;
+}
+
+void SetAllPlots(unsigned char select) __naked
+{
+  __asm
+    push iy
+    push ix
+    push hl
+    push de
+    push bc
+    push af
+    ld iy,#flags___dw
+    ld hl,#14
+    add hl,sp
+    ld b,(hl)
+    BCALL(_SetAllPlots___db)
+    pop af
+    pop bc
+    pop de
+    pop hl
+    pop ix
+    pop iy
+    ret
+  __endasm;
+}
+
+void SetFuncM() __naked
+{
+  __asm
+    push iy
+    push hl
+    push de
+    push bc
+    push af
+    ld iy,#flags___dw
+    BCALL(_SetFuncM___db)
+    pop af
+    pop bc
+    pop de
+    pop hl
+    pop iy
+    ret
+  __endasm;
+}
+
+void SetParM() __naked
+{
+  __asm
+    push iy
+    push hl
+    push de
+    push bc
+    push af
+    ld iy,#flags___dw
+    BCALL(_SetParM___db)
+    pop af
+    pop bc
+    pop de
+    pop hl
+    pop iy
+    ret
+  __endasm;
+}
+
+void SetPolM() __naked
+{
+  __asm
+    push iy
+    push hl
+    push de
+    push bc
+    push af
+    ld iy,#flags___dw
+    BCALL(_SetPolM___db)
+    pop af
+    pop bc
+    pop de
+    pop hl
+    pop iy
+    ret
+  __endasm;
+}
+
+void SetSeqM() __naked
+{
+  __asm
+    push iy
+    push hl
+    push de
+    push bc
+    push af
+    ld iy,#flags___dw
+    BCALL(_SetSeqM___db)
+    pop af
+    pop bc
+    pop de
+    pop hl
+    pop iy
+    ret
+  __endasm;
+}
+
+void SetTblGraphDraw() __naked
+{
+  __asm
+    push iy
+    ld iy,#flags___dw
+    BCALL(_SetTblGraphDraw___db)
+    pop iy
+    ret
+  __endasm;
+}
+
+void TanLnF() __naked
+{
+  __asm
+    push iy
+    push ix
+    push hl
+    push de
+    push bc
+    push af
+    ld iy,#flags___dw
+    BCALL(_TanLnF___db)
+    pop af
+    pop bc
+    pop de
+    pop hl
+    pop ix
+    pop iy
+    ret
+  __endasm;
+}
+
+void UCLineS() __naked
+{
+  __asm
+    push iy
+    push ix
+    push hl
+    push de
+    push bc
+    push af
+    ld iy,#flags___dw
+    BCALL(_UCLineS___db)
+    pop af
+    pop bc
+    pop de
+    pop hl
+    pop ix
+    pop iy
+    ret
+  __endasm;
+}
+
+void UnLineCmd() __naked
+{
+  __asm
+    push iy
+    push ix
+    push hl
+    push de
+    push bc
+    push af
+    ld iy,#flags___dw
+    BCALL(_UnLineCmd___db)
+    pop af
+    pop bc
+    pop de
+    pop hl
+    pop ix
+    pop iy
+    ret
+  __endasm;
+}
+
+void VertCmd() __naked
+{
+  __asm
+    push iy
+    push ix
+    push hl
+    push de
+    push bc
+    push af
+    ld iy,#flags___dw
+    BCALL(_VertCmd___db)
+    pop af
+    pop bc
+    pop de
+    pop hl
+    pop ix
+    pop iy
+    ret
+  __endasm;
+}
+
+void VtoWHLDE(unsigned char x, unsigned char y) __naked
+{
+  x; y;
+  __asm
+    push iy
+    push ix
+    push hl
+    push de
+    push bc
+    push af
+    ld iy,#flags___dw
+    ld hl,#14
+    add hl,sp
+    ld b,(hl)
+    inc hl
+    ld c,(hl)
+    BCALL(_VtoWHLDE___db)
+    pop af
+    pop bc
+    pop de
+    pop hl
+    pop ix
+    pop iy
+    ret
+  __endasm;
+}
+
+unsigned char XftoI(void *ptr) __naked
+{
+  ptr;
+  __asm
+    push iy
+    push ix
+    push de
+    push bc
+    push af
+    push hl
+    ld iy,#flags___dw
+    ld hl,#14
+    add hl,sp
+    ld a,(hl)
+    inc hl
+    ld h,(hl)
+    ld l,a
+    BCALL(_Xftol___db)
+    pop hl
+    ld l,a
+    pop af
+    pop bc
+    pop de
+    pop ix
+    pop iy
+    ret
+  __endasm;
+}
+
+void Xitof(unsigned char x, void *ptr) __naked
+{
+  x; ptr;
+  __asm
+    push iy
+    push ix
+    push hl
+    push de
+    push bc
+    push af
+    ld iy,#flags___dw
+    ld hl,#14
+    add hl,sp
+    ld a,(hl)
+    inc hl
+    ld b,(hl)
+    inc hl
+    ld h,(hl)
+    ld l,b
+    BCALL(_Xitof___db)
+    pop af
+    pop bc
+    pop de
+    pop hl
+    pop ix
+    pop iy
+    ret
+  __endasm;
+}
+
+unsigned char YftoI(void *ptr) __naked
+{
+  ptr;
+  __asm
+    push iy
+    push ix
+    push de
+    push bc
+    push af
+    push hl
+    ld iy,#flags___dw
+    ld hl,#14
+    add hl,sp
+    ld a,(hl)
+    inc hl
+    ld h,(hl)
+    ld l,a
+    BCALL(_Yftol___db)
+    pop hl
+    ld l,a
+    pop af
+    pop bc
+    pop de
+    pop ix
+    pop iy
+    ret
+  __endasm;
+}
+
+void ZmDecml() __naked
+{
+  __asm
+    push iy
+    push ix
+    push de
+    push bc
+    push af
+    push hl
+    ld iy,#flags___dw
+    BCALL(_ZmDecml___db)
+    pop hl
+    pop af
+    pop bc
+    pop de
+    pop ix
+    pop iy
+    ret
+  __endasm;
+}
+
+void ZmFit() __naked
+{
+  __asm
+    push iy
+    push ix
+    push de
+    push bc
+    push af
+    push hl
+    ld iy,#flags___dw
+    BCALL(_ZmFit___db)
+    pop hl
+    pop af
+    pop bc
+    pop de
+    pop ix
+    pop iy
+    ret
+  __endasm;
+}
+
+void ZmInt() __naked
+{
+  __asm
+    push iy
+    push ix
+    push de
+    push bc
+    push af
+    push hl
+    ld iy,#flags___dw
+    BCALL(_ZmInt___db)
+    pop hl
+    pop af
+    pop bc
+    pop de
+    pop ix
+    pop iy
+    ret
+  __endasm;
+}
+
+void ZmPrev() __naked
+{
+  __asm
+    push iy
+    push ix
+    push de
+    push bc
+    push af
+    push hl
+    ld iy,#flags___dw
+    BCALL(_ZmPrev___db)
+    pop hl
+    pop af
+    pop bc
+    pop de
+    pop ix
+    pop iy
+    ret
+  __endasm;
+}
+
+void ZmSquare() __naked
+{
+  __asm
+    push iy
+    push ix
+    push de
+    push bc
+    push af
+    push hl
+    ld iy,#flags___dw
+    BCALL(_ZmSquare___db)
+    pop hl
+    pop af
+    pop bc
+    pop de
+    pop ix
+    pop iy
+    ret
+  __endasm;
+}
+
+void ZmStats() __naked
+{
+  __asm
+    push iy
+    push ix
+    push de
+    push bc
+    push af
+    push hl
+    ld iy,#flags___dw
+    BCALL(_ZmStats___db)
+    pop hl
+    pop af
+    pop bc
+    pop de
+    pop ix
+    pop iy
+    ret
+  __endasm;
+}
+
+void ZmTrig() __naked
+{
+  __asm
+    push iy
+    push ix
+    push de
+    push bc
+    push af
+    push hl
+    ld iy,#flags___dw
+    BCALL(_ZmTrig___db)
+    pop hl
+    pop af
+    pop bc
+    pop de
+    pop ix
+    pop iy
+    ret
+  __endasm;
+}
+
+void ZmUsr() __naked
+{
+  __asm
+    push iy
+    push ix
+    push de
+    push bc
+    push af
+    push hl
+    ld iy,#flags___dw
+    BCALL(_ZmUsr___db)
+    pop hl
+    pop af
+    pop bc
+    pop de
+    pop ix
+    pop iy
+    ret
+  __endasm;
+}
+
+void ZooDefault() __naked
+{
+  __asm
+    push iy
+    push ix
+    push de
+    push bc
+    push af
+    push hl
+    ld iy,#flags___dw
+    BCALL(_ZooDefault___db)
+    pop hl
+    pop af
+    pop bc
+    pop de
+    pop ix
     pop iy
     ret
   __endasm;
