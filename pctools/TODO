@@ -1,0 +1,1 @@
+- Add library mode (tisdcc -t foo a.o b.o c.o -o bar.lib)

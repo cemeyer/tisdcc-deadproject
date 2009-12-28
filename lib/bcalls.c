@@ -372,4 +372,433 @@ void LoadPattern(unsigned char charequate) __naked
     ret
   __endasm;
 }
+
+void *Load_SFont(unsigned int offset) __naked
+{
+  offset;
+  __asm
+    push de
+    ld hl,#4
+    add hl,sp
+    ld e,(hl)
+    inc hl
+    ld h,(hl)
+    ld l,e
+    BCALL(_Load_SFont___db)
+    pop de
+    ret
+  __endasm;
+}
+
+void NewLine() __naked
+{
+  __asm
+    push ix
+    push iy
+    push hl
+    push de
+    push bc
+    push af
+    ld iy,#flags___dw ; load TIOS' iy value
+    BCALL(_NewLine___db)
+    pop af
+    pop bc
+    pop de
+    pop hl
+    pop iy
+    pop ix
+    ret
+  __endasm;
+}
+
+
+void OutputExpr(unsigned char col, unsigned char row) __naked
+{
+  col; row;
+  __asm
+    push ix
+    push iy
+    push hl
+    push de
+    push bc
+    push af
+    ld hl,#14
+    add hl,sp
+    ld a,(hl)
+    inc hl
+    ld l,(hl)
+    ld h,a
+    ld iy,#flags___dw ; load TIOS' iy value
+    BCALL(_OutputExpr___db)
+    pop af
+    pop bc
+    pop de
+    pop hl
+    pop iy
+    pop ix
+    ret
+  __endasm;
+}
+
+void PutC(char c) __naked
+{
+  c;
+  __asm
+    push iy
+    push hl
+    ld hl,#6
+    add hl,sp
+    ld a,(hl)
+    ld iy,#flags___dw ; load TIOS' iy value
+    BCALL(_PutC___db)
+    pop hl
+    pop iy
+    ret
+  __endasm;
+}
+
+void PutMap(char c) __naked
+{
+  c;
+  __asm
+    push iy
+    push hl
+    ld hl,#6
+    add hl,sp
+    ld a,(hl)
+    ld iy,#flags___dw ; load TIOS' iy value
+    BCALL(_PutMap___db)
+    pop hl
+    pop iy
+    ret
+  __endasm;
+}
+
+void PutPS(char *str) __naked
+{
+  str;
+  __asm
+    push ix
+    push iy
+    push hl
+    push bc
+    push af
+    ld iy,#flags___dw ; load TIOS' iy value
+    ld hl,#12
+    add hl,sp
+    ld c,(hl)
+    inc hl
+    ld h,(hl)
+    ld l,c
+    BCALL(_PutPS___db)
+    pop af
+    pop bc
+    pop hl
+    pop iy
+    pop ix
+    ret
+  __endasm;
+}
+
+void PutPSB(char *str) __naked
+{
+  str;
+  __asm
+    push ix
+    push iy
+    push hl
+    push bc
+    push af
+    ld iy,#flags___dw ; load TIOS' iy value
+    ld hl,#12
+    add hl,sp
+    ld c,(hl)
+    inc hl
+    ld h,(hl)
+    ld l,c
+    BCALL(_PutPSB___db)
+    pop af
+    pop bc
+    pop hl
+    pop iy
+    pop ix
+    ret
+  __endasm;
+}
+
+void PutS(char *str) __naked
+{
+  str;
+  __asm
+    push iy
+    push hl
+    push af
+    ld iy,#flags___dw ; load TIOS' iy value
+    ld hl,#8
+    add hl,sp
+    ld a,(hl)
+    inc hl
+    ld h,(hl)
+    ld l,a
+    pop af  ; only need a temporarily to put str in hl
+    BCALL(_PutS___db)
+    pop hl
+    pop iy
+    ret
+  __endasm;
+}
+
+void PutTokString(int tok) __naked
+{
+  str;
+  __asm
+    push iy ; not entirely sure we need to save iy
+    push ix
+    push hl
+    push de
+    push bc
+    push af
+    ld iy,#flags___dw ; load TIOS' iy value
+    ld hl,#14
+    add hl,sp
+    ld e,(hl)
+    inc hl
+    ld d,(hl)
+    BCALL(_PutTokString___db)
+    pop af
+    pop bc
+    pop de
+    pop hl
+    pop ix
+    pop iy
+    ret
+  __endasm;
+}
+
+void RestoreDisp(void *data, unsigned char numrows) __naked
+{
+  data; numrows;
+  __asm
+    push iy ; not entirely sure we need to save iy
+    push ix
+    push hl
+    push de
+    push bc
+    push af
+    ld iy,#flags___dw ; load TIOS' iy value
+    ld hl,#16
+    add hl,sp
+    ld b,(hl)
+    dec hl
+    ld c,(hl)
+    dec hl
+    ld l,(hl)
+    ld h,c
+    BCALL(_RestoreDisp___db)
+    pop af
+    pop bc
+    pop de
+    pop hl
+    pop ix
+    pop iy
+    ret
+  __endasm;
+}
+
+void RunIndicOff() __naked
+{
+  __asm
+    push iy
+    ld iy,#flags___dw ; load TIOS' iy value
+    BCALL(_RunIndicOff___db)
+    pop iy
+    ret
+  __endasm;
+}
+
+void RunIndicOn() __naked
+{
+  __asm
+    push iy
+    ld iy,#flags___dw ; load TIOS' iy value
+    BCALL(_RunIndicOn___db)
+    pop iy
+    ret
+  __endasm;
+}
+
+void SaveDisp(void *ptr) __naked
+{
+  ptr;
+  __asm
+    push iy
+    push ix
+    push hl
+    push de
+    push bc
+    push af
+    ld iy,#flags___dw ; load TIOS' iy value
+    ld hl,#14
+    ld a,(hl)
+    inc hl
+    ld h,(hl)
+    ld l,a
+    BCALL(_SaveDisp___db)
+    pop af
+    pop bc
+    pop de
+    pop hl
+    pop ix
+    pop iy
+    ret
+  __endasm;
+}
+
+void SetNorm_Vals() __naked
+{
+  __asm
+    push iy
+    push ix
+    push hl
+    push de
+    push bc
+    push af
+    ld iy,#flags___dw ; load TIOS' iy value
+    BCALL(_SetNorm_Vals___db)
+    pop af
+    pop bc
+    pop de
+    pop hl
+    pop ix
+    pop iy
+    ret
+  __endasm;
+}
+
+unsigned char SFont_Len(unsigned int offset) __naked
+{
+  offset;
+  __asm
+    push iy
+    push ix
+    push de
+    push bc
+    ld l,a      ; save h, a on stack
+    push hl     ; (we trash l and f safely)
+    ld iy,#flags___dw ; load TIOS' iy value
+    ld hl,#12   ; load offset off the stack
+    add hl,sp
+    ld a,(hl)
+    inc hl
+    ld h,(hl)
+    ld l,a
+    BCALL(_SFont_Len___db)
+    pop hl
+    ld b,a  ; swap l, a
+    ld a,l
+    ld l,b
+    pop bc
+    pop de
+    pop ix
+    pop iy
+    ret
+  __endasm;
+}
+
+unsigned int SStringLength(char *str) __naked
+{
+  str;
+  __asm
+    push iy
+    push ix
+    push de
+    push bc
+    push af
+    ld iy,#flags___dw
+    ld hl,#12
+    add hl,sp
+    ld a,(hl)
+    inc hl
+    ld h,(hl)
+    ld l,a
+    BCALL(_SStringLength___db)
+    ld h,a
+    ld l,b
+    pop af
+    pop bc
+    pop de
+    pop ix
+    pop iy
+    ret
+  __endasm;
+}
+
+void VPutMap(char c) __naked
+{
+  c;
+  __asm
+    push iy
+    push ix
+    push af
+    push hl
+    ld hl,#10
+    add hl,sp
+    ld a,(hl)
+    ex de,hl
+    ld iy,#flags___dw
+    BCALL(_VPutMap___db)
+    ex de,hl
+    pop hl
+    pop af
+    pop ix
+    pop iy
+    ret
+  __endasm;
+}
+
+void VPutS(char *str) __naked
+{
+  str;
+  __asm
+    push iy
+    push hl
+    push bc
+    ld hl,#8
+    add hl,sp
+    ld b,(hl)
+    inc hl
+    ld h,(hl)
+    ld l,b
+    ld iy,#flags___dw
+    BCALL(_VPutS___db)
+    pop bc
+    pop hl
+    pop iy
+    ret
+  __endasm;
+}
+
+void VPutSN(char *str, unsigned char len) __naked
+{
+  str;
+  __asm
+    push iy
+    push hl
+    push bc
+    ld hl,#10
+    add hl,sp
+    ld b,(hl)
+    dec hl
+    ld c,(hl)
+    dec hl
+    ld l,(hl)
+    ld h,c
+    ld iy,#flags___dw
+    BCALL(_VPutSN___db)
+    pop bc
+    pop hl
+    pop iy
+    ret
+  __endasm;
+}
 #endif
