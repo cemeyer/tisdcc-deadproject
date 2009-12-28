@@ -1897,4 +1897,613 @@ void CpyO6ToFPS2() __naked
     ret
   __endasm;
 }
+
+void CpyTo1FPST() __naked
+{
+  __asm
+    push iy
+    push ix
+    push hl
+    push de
+    push bc
+    push af
+    ld iy,#flags___dw
+    BCALL(_CpyTo1FPST___db)
+    pop af
+    pop bc
+    pop de
+    pop hl
+    pop ix
+    pop iy
+    ret
+  __endasm;
+}
+
+void CpyTo1FPS1() __naked
+{
+  __asm
+    push iy
+    push ix
+    push hl
+    push de
+    push bc
+    push af
+    ld iy,#flags___dw
+    BCALL(_CpyTo1FPS1___db)
+    pop af
+    pop bc
+    pop de
+    pop hl
+    pop ix
+    pop iy
+    ret
+  __endasm;
+}
+
+void CpyTo1FPS2() __naked
+{
+  __asm
+    push iy
+    push ix
+    push hl
+    push de
+    push bc
+    push af
+    ld iy,#flags___dw
+    BCALL(_CpyTo1FPS2___db)
+    pop af
+    pop bc
+    pop de
+    pop hl
+    pop ix
+    pop iy
+    ret
+  __endasm;
+}
+
+void CpyTo1FPS3() __naked
+{
+  __asm
+    push iy
+    push ix
+    push hl
+    push de
+    push bc
+    push af
+    ld iy,#flags___dw
+    BCALL(_CpyTo1FPS3___db)
+    pop af
+    pop bc
+    pop de
+    pop hl
+    pop ix
+    pop iy
+    ret
+  __endasm;
+}
+
+void CpyTo1FPS4() __naked
+{
+  __asm
+    push iy
+    push ix
+    push hl
+    push de
+    push bc
+    push af
+    ld iy,#flags___dw
+    BCALL(_CpyTo1FPS4___db)
+    pop af
+    pop bc
+    pop de
+    pop hl
+    pop ix
+    pop iy
+    ret
+  __endasm;
+}
+
+void CpyTo1FPS5() __naked
+{
+  __asm
+    push iy
+    push ix
+    push hl
+    push de
+    push bc
+    push af
+    ld iy,#flags___dw
+    BCALL(_CpyTo1FPS5___db)
+    pop af
+    pop bc
+    pop de
+    pop hl
+    pop ix
+    pop iy
+    ret
+  __endasm;
+}
+
+void CpyTo1FPS6() __naked
+{
+  __asm
+    push iy
+    push ix
+    push hl
+    push de
+    push bc
+    push af
+    ld iy,#flags___dw
+    BCALL(_CpyTo1FPS6___db)
+    pop af
+    pop bc
+    pop de
+    pop hl
+    pop ix
+    pop iy
+    ret
+  __endasm;
+}
+
+void CpyTo1FPS7() __naked
+{
+  __asm
+    push iy
+    push ix
+    push hl
+    push de
+    push bc
+    push af
+    ld iy,#flags___dw
+    BCALL(_CpyTo1FPS7___db)
+    pop af
+    pop bc
+    pop de
+    pop hl
+    pop ix
+    pop iy
+    ret
+  __endasm;
+}
+
+void CpyTo1FPS8() __naked
+{
+  __asm
+    push iy
+    push ix
+    push hl
+    push de
+    push bc
+    push af
+    ld iy,#flags___dw
+    BCALL(_CpyTo1FPS8___db)
+    pop af
+    pop bc
+    pop de
+    pop hl
+    pop ix
+    pop iy
+    ret
+  __endasm;
+}
+
+void CpyTo1FPS9() __naked
+{
+  __asm
+    push iy
+    push ix
+    push hl
+    push de
+    push bc
+    push af
+    ld iy,#flags___dw
+    BCALL(_CpyTo1FPS9___db)
+    pop af
+    pop bc
+    pop de
+    pop hl
+    pop ix
+    pop iy
+    ret
+  __endasm;
+}
+
+void CpyTo1FPS10() __naked
+{
+  __asm
+    push iy
+    push ix
+    push hl
+    push de
+    push bc
+    push af
+    ld iy,#flags___dw
+    BCALL(_CpyTo1FPS10___db)
+    pop af
+    pop bc
+    pop de
+    pop hl
+    pop ix
+    pop iy
+    ret
+  __endasm;
+}
+
+void CpyTo1FPS11() __naked
+{
+  __asm
+    push iy
+    push ix
+    push hl
+    push de
+    push bc
+    push af
+    ld iy,#flags___dw
+    BCALL(_CpyTo1FPS11___db)
+    pop af
+    pop bc
+    pop de
+    pop hl
+    pop ix
+    pop iy
+    ret
+  __endasm;
+}
+
+void CpyTo2FPST() __naked
+{
+  __asm
+    push iy
+    push ix
+    push hl
+    push de
+    push bc
+    push af
+    ld iy,#flags___dw
+    BCALL(_CpyTo2FPST___db)
+    pop af
+    pop bc
+    pop de
+    pop hl
+    pop ix
+    pop iy
+    ret
+  __endasm;
+}
+
+void CpyTo2FPS1() __naked
+{
+  __asm
+    push iy
+    push ix
+    push hl
+    push de
+    push bc
+    push af
+    ld iy,#flags___dw
+    BCALL(_CpyTo2FPS1___db)
+    pop af
+    pop bc
+    pop de
+    pop hl
+    pop ix
+    pop iy
+    ret
+  __endasm;
+}
+
+void CpyTo2FPS2() __naked
+{
+  __asm
+    push iy
+    push ix
+    push hl
+    push de
+    push bc
+    push af
+    ld iy,#flags___dw
+    BCALL(_CpyTo2FPS2___db)
+    pop af
+    pop bc
+    pop de
+    pop hl
+    pop ix
+    pop iy
+    ret
+  __endasm;
+}
+
+void CpyTo2FPS3() __naked
+{
+  __asm
+    push iy
+    push ix
+    push hl
+    push de
+    push bc
+    push af
+    ld iy,#flags___dw
+    BCALL(_CpyTo2FPS3___db)
+    pop af
+    pop bc
+    pop de
+    pop hl
+    pop ix
+    pop iy
+    ret
+  __endasm;
+}
+
+void CpyTo2FPS4() __naked
+{
+  __asm
+    push iy
+    push ix
+    push hl
+    push de
+    push bc
+    push af
+    ld iy,#flags___dw
+    BCALL(_CpyTo2FPS4___db)
+    pop af
+    pop bc
+    pop de
+    pop hl
+    pop ix
+    pop iy
+    ret
+  __endasm;
+}
+
+void CpyTo2FPS5() __naked
+{
+  __asm
+    push iy
+    push ix
+    push hl
+    push de
+    push bc
+    push af
+    ld iy,#flags___dw
+    BCALL(_CpyTo2FPS5___db)
+    pop af
+    pop bc
+    pop de
+    pop hl
+    pop ix
+    pop iy
+    ret
+  __endasm;
+}
+
+void CpyTo2FPS6() __naked
+{
+  __asm
+    push iy
+    push ix
+    push hl
+    push de
+    push bc
+    push af
+    ld iy,#flags___dw
+    BCALL(_CpyTo2FPS6___db)
+    pop af
+    pop bc
+    pop de
+    pop hl
+    pop ix
+    pop iy
+    ret
+  __endasm;
+}
+
+void CpyTo2FPS7() __naked
+{
+  __asm
+    push iy
+    push ix
+    push hl
+    push de
+    push bc
+    push af
+    ld iy,#flags___dw
+    BCALL(_CpyTo2FPS7___db)
+    pop af
+    pop bc
+    pop de
+    pop hl
+    pop ix
+    pop iy
+    ret
+  __endasm;
+}
+
+void CpyTo2FPS8() __naked
+{
+  __asm
+    push iy
+    push ix
+    push hl
+    push de
+    push bc
+    push af
+    ld iy,#flags___dw
+    BCALL(_CpyTo2FPS8___db)
+    pop af
+    pop bc
+    pop de
+    pop hl
+    pop ix
+    pop iy
+    ret
+  __endasm;
+}
+
+void CpyTo3FPST() __naked
+{
+  __asm
+    push iy
+    push ix
+    push hl
+    push de
+    push bc
+    push af
+    ld iy,#flags___dw
+    BCALL(_CpyTo3FPST___db)
+    pop af
+    pop bc
+    pop de
+    pop hl
+    pop ix
+    pop iy
+    ret
+  __endasm;
+}
+
+void CpyTo3FPS1() __naked
+{
+  __asm
+    push iy
+    push ix
+    push hl
+    push de
+    push bc
+    push af
+    ld iy,#flags___dw
+    BCALL(_CpyTo3FPS1___db)
+    pop af
+    pop bc
+    pop de
+    pop hl
+    pop ix
+    pop iy
+    ret
+  __endasm;
+}
+
+void CpyTo3FPS2() __naked
+{
+  __asm
+    push iy
+    push ix
+    push hl
+    push de
+    push bc
+    push af
+    ld iy,#flags___dw
+    BCALL(_CpyTo3FPS2___db)
+    pop af
+    pop bc
+    pop de
+    pop hl
+    pop ix
+    pop iy
+    ret
+  __endasm;
+}
+
+void CpyTo4FPST() __naked
+{
+  __asm
+    push iy
+    push ix
+    push hl
+    push de
+    push bc
+    push af
+    ld iy,#flags___dw
+    BCALL(_CpyTo4FPST___db)
+    pop af
+    pop bc
+    pop de
+    pop hl
+    pop ix
+    pop iy
+    ret
+  __endasm;
+}
+
+void CpyTo5FPST() __naked
+{
+  __asm
+    push iy
+    push ix
+    push hl
+    push de
+    push bc
+    push af
+    ld iy,#flags___dw
+    BCALL(_CpyTo5FPST___db)
+    pop af
+    pop bc
+    pop de
+    pop hl
+    pop ix
+    pop iy
+    ret
+  __endasm;
+}
+
+void CpyTo6FPST() __naked
+{
+  __asm
+    push iy
+    push ix
+    push hl
+    push de
+    push bc
+    push af
+    ld iy,#flags___dw
+    BCALL(_CpyTo6FPST___db)
+    pop af
+    pop bc
+    pop de
+    pop hl
+    pop ix
+    pop iy
+    ret
+  __endasm;
+}
+
+void CpyTo6FPS2() __naked
+{
+  __asm
+    push iy
+    push ix
+    push hl
+    push de
+    push bc
+    push af
+    ld iy,#flags___dw
+    BCALL(_CpyTo6FPS2___db)
+    pop af
+    pop bc
+    pop de
+    pop hl
+    pop ix
+    pop iy
+    ret
+  __endasm;
+}
+
+void CpyTo6FPS3() __naked
+{
+  __asm
+    push iy
+    push ix
+    push hl
+    push de
+    push bc
+    push af
+    ld iy,#flags___dw
+    BCALL(_CpyTo6FPS3___db)
+    pop af
+    pop bc
+    pop de
+    pop hl
+    pop ix
+    pop iy
+    ret
+  __endasm;
+}
 #endif
