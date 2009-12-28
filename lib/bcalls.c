@@ -4686,4 +4686,290 @@ unsigned char GetKey() __naked
     ret
   __endasm;
 }
+
+void *AdrLEle(void *list, unsigned int index) __naked
+{
+  __asm
+    push iy
+    ld iy,#flags___dw
+    push af
+    push bc
+    push de
+    ld hl,#10
+    add hl,sp
+    ld e,(hl)
+    inc hl
+    ld d,(hl)
+    inc hl
+    ld a,(hl)
+    inc hl
+    ld h,(hl)
+    ld l,a
+    BCALL(_AdrLEle___db)
+    pop de
+    pop bc
+    pop af
+    pop iy
+    ret
+  __endasm;
+}
+
+unsigned int ConvDim() __naked
+{
+  __asm
+    push iy
+    ld iy,#flags___dw
+    push af
+    push bc
+    push de
+    BCALL(_ConvDim___db)
+    ex de,hl
+    pop de
+    pop bc
+    pop af
+    pop iy
+    ret
+  __endasm;
+}
+
+void ConvLcToLr() __naked
+{
+  __asm
+    push iy
+    ld iy,#flags___dw
+    push ix
+    push hl
+    push af
+    push bc
+    push de
+    BCALL(_ConvLcToLr___db)
+    pop de
+    pop bc
+    pop af
+    pop hl
+    pop ix
+    pop iy
+    ret
+  __endasm;
+}
+
+void *ConvLrToLc(void *ptr) __naked
+{
+  ptr;
+  __asm
+    push iy
+    ld iy,#flags___dw
+    push ix
+    push af
+    push bc
+    push de
+    ld hl,#12
+    add hl,sp
+    ld e,(hl)
+    inc hl
+    ld d,(hl)
+    BCALL(_ConvLrToLc___db)
+    ex de,hl
+    pop de
+    pop bc
+    pop af
+    pop ix
+    pop iy
+    ret
+  __endasm;
+}
+
+unsigned int DelListEl(unsigned char type, void *data, unsigned int idx,
+    unsigned int n) __naked
+{
+  type; data; idx; n;
+  __asm
+    push iy
+    ld iy,#flags___dw
+    push ix
+    push de
+    push bc
+    push af
+    ld hl,#12
+    add hl,sp
+    ld a,(hl)
+    inc hl
+    ld e,(hl)
+    inc hl
+    ld d,(hl)
+    inc hl
+    ld c,(hl)
+    inc hl
+    ld b,(hl)
+    inc hl
+    push bc
+    ld b,(hl)
+    inc hl
+    ld h,(hl)
+    ld l,b
+    pop bc
+    BCALL(_DelListEl___db)
+    ex de,hl
+    pop af
+    pop bc
+    pop de
+    pop ix
+    pop iy
+    ret
+  __endasm;
+}
+
+void Find_Parse_Formula() __naked
+{
+  __asm
+    push iy
+    push ix
+    push hl
+    push de
+    push bc
+    push af
+    ld iy,#flags___dw
+    BCALL(_Find_Parse_Formula___db)
+    pop af
+    pop bc
+    pop de
+    pop hl
+    pop ix
+    pop iy
+    ret
+  __endasm;
+}
+
+void *GetLToOP1(unsigned int n, void *ptr) __naked
+{
+  n; ptr;
+  __asm
+    push iy
+    push ix
+    push de
+    push bc
+    push af
+    ld iy,#flags___dw
+    ld hl,#15
+    add hl,sp
+    ld d,(hl)
+    dec hl
+    ld e,(hl)
+    dec hl
+    ld a,(hl)
+    dec hl
+    ld l,(hl)
+    ld h,a
+    BCALL(_GetLToOP1___db)
+    pop af
+    pop bc
+    pop de
+    pop ix
+    pop iy
+    ret
+  __endasm;
+}
+
+unsigned int IncLstSize(unsigned char type, void *ptr) __naked
+{
+  type; ptr;
+  __asm
+    push iy
+    push ix
+    push de
+    push bc
+    push af
+    ld hl,#12
+    ld a,(hl)
+    inc hl
+    ld e,(hl)
+    inc hl
+    ld d,(hl)
+    BCALL(_IncLstSize___db)
+    pop af
+    pop bc
+    pop de
+    pop ix
+    pop iy
+    ret
+  __endasm;
+}
+
+unsigned int InsertList(unsigned char type, void *ptr, unsigned int idx,
+    unsigned int n, unsigned char set) __naked
+{
+  type; ptr; idx; n; set;
+  __asm
+    push iy
+    push ix
+    push de
+    push bc
+    push af
+    ld hl,#12
+    add hl,sp
+    ld a,(hl)
+    inc hl
+    ld e,(hl)
+    inc hl
+    ld d,(hl)
+    inc hl
+    ld c,(hl)
+    inc hl
+    ld b,(hl)
+    push bc
+    inc hl
+    ld c,(hl)
+    inc hl
+    ld b,(hl)
+    push bc
+    inc hl
+    ld b,(hl)
+    ld c,a
+    ld a,b
+    cp #0
+    ccf
+    jr z,___set_zero
+    scf
+___set_zero:
+    pop hl
+    ld a,c
+    pop bc
+    BCALL(_InsertList___db)
+    pop af
+    pop bc
+    pop de
+    pop ix
+    pop iy
+    ret
+  __endasm;
+}
+
+void *PutToL(unsigned int idx, void *ptr) __naked
+{
+  ptr; idx;
+  __asm
+    push iy
+    push ix
+    push de
+    push bc
+    push af
+    ld hl,#15
+    ld d,(hl)
+    dec hl
+    ld e,(hl)
+    dec hl
+    ld a,(hl)
+    dec hl
+    ld l,(hl)
+    ld h,a
+    BCALL(_PutToL___db)
+    ex de,hl
+    pop af
+    pop bc
+    pop de
+    pop ix
+    pop iy
+    ret
+  __endasm;
+}
 #endif

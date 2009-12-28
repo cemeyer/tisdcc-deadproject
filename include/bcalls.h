@@ -239,4 +239,16 @@ void ApdSetup();
 void CanAlphIns();
 unsigned char GetCSC();
 unsigned char GetKey();
+void *AdrLEle(void *list, unsigned int index);
+unsigned int ConvDim();
+void ConvLcToLr();
+void *ConvLrToLc(void *ptr);
+unsigned int DelListEl(unsigned char type, void *data, unsigned int idx,
+    unsigned int n);
+void Find_Parse_Formula();
+void *GetLToOP1(unsigned int n, void *ptr);
+unsigned int IncLstSize(unsigned char type, void *ptr);
+unsigned int InsertList(unsigned char type, void *ptr, unsigned int idx,
+    unsigned int n, unsigned char set);
+void *PutToL(unsigned int idx, void *ptr);
 #endif
