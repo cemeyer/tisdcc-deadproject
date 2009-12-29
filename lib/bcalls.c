@@ -6417,4 +6417,483 @@ void Intgr() __naked
     ret
   __endasm;
 }
+
+void InvOP1S() __naked
+{
+  __asm
+    push af
+    push iy
+    ld iy,#flags___dw
+    BCALL(_InvOP1S___db)
+    pop iy
+    pop af
+    ret
+  __endasm;
+}
+
+void InvOP1SC() __naked
+{
+  __asm
+    push af
+    push iy
+    ld iy,#flags___dw
+    BCALL(_InvOP1SC___db)
+    pop iy
+    pop af
+    ret
+  __endasm;
+}
+
+void InvOP2S() __naked
+{
+  __asm
+    push af
+    push iy
+    ld iy,#flags___dw
+    BCALL(_InvOP2S___db)
+    pop iy
+    pop af
+    ret
+  __endasm;
+}
+
+void InvSub() __naked
+{
+  __asm
+    push af
+    push bc
+    push de
+    push hl
+    push iy
+    ld iy,#flags___dw
+    BCALL(_InvSub___db)
+    pop iy
+    pop hl
+    pop de
+    pop bc
+    pop af
+    ret
+  __endasm;
+}
+
+void LnX() __naked
+{
+  __asm
+    push af
+    push bc
+    push de
+    push hl
+    push ix
+    push iy
+    ld iy,#flags___dw
+    BCALL(_LnX___db)
+    pop iy
+    pop ix
+    pop hl
+    pop de
+    pop bc
+    pop af
+    ret
+  __endasm;
+}
+
+void LogX() __naked
+{
+  __asm
+    push af
+    push bc
+    push de
+    push hl
+    push ix
+    push iy
+    ld iy,#flags___dw
+    BCALL(_LogX___db)
+    pop iy
+    pop ix
+    pop hl
+    pop de
+    pop bc
+    pop af
+    ret
+  __endasm;
+}
+
+void Max() __naked
+{
+  __asm
+    push af
+    push bc
+    push de
+    push hl
+    push ix
+    push iy
+    ld iy,#flags___dw
+    BCALL(_Max___db)
+    pop iy
+    pop ix
+    pop hl
+    pop de
+    pop bc
+    pop af
+    ret
+  __endasm;
+}
+
+void Min() __naked
+{
+  __asm
+    push af
+    push bc
+    push de
+    push hl
+    push iy
+    ld iy,#flags___dw
+    BCALL(_Min___db)
+    pop iy
+    pop hl
+    pop de
+    pop bc
+    pop af
+    ret
+  __endasm;
+}
+
+void Minus1() __naked
+{
+  __asm
+    push af
+    push bc
+    push de
+    push hl
+    push ix
+    push iy
+    ld iy,#flags___dw
+    BCALL(_Minus1___db)
+    pop iy
+    pop ix
+    pop hl
+    pop de
+    pop bc
+    pop af
+    ret
+  __endasm;
+}
+
+void OP1ExpToDec() __naked
+{
+  __asm
+    push af
+    push bc
+    push iy
+    ld iy,#flags___dw
+    BCALL(_OP1ExpToDec___db)
+    pop iy
+    pop bc
+    pop af
+    ret
+  __endasm;
+}
+
+void OP1Set0() __naked
+{
+  __asm
+    push af
+    push hl
+    push iy
+    ld iy,#flags___dw
+    BCALL(_OP1Set0___db)
+    pop iy
+    pop hl
+    pop af
+    ret
+  __endasm;
+}
+
+void OP1Set1() __naked
+{
+  __asm
+    push af
+    push hl
+    push iy
+    ld iy,#flags___dw
+    BCALL(_OP1Set1___db)
+    pop iy
+    pop hl
+    pop af
+    ret
+  __endasm;
+}
+
+void OP1Set2() __naked
+{
+  __asm
+    push af
+    push hl
+    push iy
+    ld iy,#flags___dw
+    BCALL(_OP1Set2___db)
+    pop iy
+    pop hl
+    pop af
+    ret
+  __endasm;
+}
+
+void OP1Set3() __naked
+{
+  __asm
+    push af
+    push hl
+    push iy
+    ld iy,#flags___dw
+    BCALL(_OP1Set3___db)
+    pop iy
+    pop hl
+    pop af
+    ret
+  __endasm;
+}
+
+void OP1Set4() __naked
+{
+  __asm
+    push af
+    push hl
+    push iy
+    ld iy,#flags___dw
+    BCALL(_OP1Set4___db)
+    pop iy
+    pop hl
+    pop af
+    ret
+  __endasm;
+}
+
+void OP2Set0() __naked
+{
+  __asm
+    push af
+    push hl
+    push iy
+    ld iy,#flags___dw
+    BCALL(_OP2Set0___db)
+    pop iy
+    pop hl
+    pop af
+    ret
+  __endasm;
+}
+
+void OP2Set1() __naked
+{
+  __asm
+    push af
+    push hl
+    push iy
+    ld iy,#flags___dw
+    BCALL(_OP2Set1___db)
+    pop iy
+    pop hl
+    pop af
+    ret
+  __endasm;
+}
+
+void OP2Set2() __naked
+{
+  __asm
+    push af
+    push hl
+    push iy
+    ld iy,#flags___dw
+    BCALL(_OP2Set2___db)
+    pop iy
+    pop hl
+    pop af
+    ret
+  __endasm;
+}
+
+void OP2Set3() __naked
+{
+  __asm
+    push af
+    push hl
+    push iy
+    ld iy,#flags___dw
+    BCALL(_OP2Set3___db)
+    pop iy
+    pop hl
+    pop af
+    ret
+  __endasm;
+}
+
+void OP2Set4() __naked
+{
+  __asm
+    push af
+    push hl
+    push iy
+    ld iy,#flags___dw
+    BCALL(_OP2Set4___db)
+    pop iy
+    pop hl
+    pop af
+    ret
+  __endasm;
+}
+
+void OP2Set5() __naked
+{
+  __asm
+    push af
+    push hl
+    push iy
+    ld iy,#flags___dw
+    BCALL(_OP2Set5___db)
+    pop iy
+    pop hl
+    pop af
+    ret
+  __endasm;
+}
+
+void OP2Set60() __naked
+{
+  __asm
+    push af
+    push hl
+    push iy
+    ld iy,#flags___dw
+    BCALL(_OP2Set60___db)
+    pop iy
+    pop hl
+    pop af
+    ret
+  __endasm;
+}
+
+void OP3Set0() __naked
+{
+  __asm
+    push af
+    push hl
+    push iy
+    ld iy,#flags___dw
+    BCALL(_OP3Set0___db)
+    pop iy
+    pop hl
+    pop af
+    ret
+  __endasm;
+}
+
+void OP3Set1() __naked
+{
+  __asm
+    push af
+    push hl
+    push iy
+    ld iy,#flags___dw
+    BCALL(_OP3Set1___db)
+    pop iy
+    pop hl
+    pop af
+    ret
+  __endasm;
+}
+
+void OP3Set2() __naked
+{
+  __asm
+    push af
+    push hl
+    push iy
+    ld iy,#flags___dw
+    BCALL(_OP3Set2___db)
+    pop iy
+    pop hl
+    pop af
+    ret
+  __endasm;
+}
+
+void OP4Set0() __naked
+{
+  __asm
+    push af
+    push hl
+    push iy
+    ld iy,#flags___dw
+    BCALL(_OP4Set0___db)
+    pop iy
+    pop hl
+    pop af
+    ret
+  __endasm;
+}
+
+void OP4Set1() __naked
+{
+  __asm
+    push af
+    push hl
+    push iy
+    ld iy,#flags___dw
+    BCALL(_OP4Set1___db)
+    pop iy
+    pop hl
+    pop af
+    ret
+  __endasm;
+}
+
+void OP5Set0() __naked
+{
+  __asm
+    push af
+    push hl
+    push iy
+    ld iy,#flags___dw
+    BCALL(_OP5Set0___db)
+    pop iy
+    pop hl
+    pop af
+    ret
+  __endasm;
+}
+
+void OP2Set8() __naked
+{
+  __asm
+    push af
+    push hl
+    push iy
+    ld iy,#flags___dw
+    BCALL(_OP2Set8___db)
+    pop iy
+    pop hl
+    pop af
+    ret
+  __endasm;
+}
+
+void OP2SetA(unsigned char i) __naked
+{
+  __asm
+    push af
+    push hl
+    push iy
+    ld hl,#8
+    add hl,sp
+    ld a,(hl)
+    ld iy,#flags___dw
+    BCALL(_OP2Set8___db)
+    pop iy
+    pop hl
+    pop af
+    ret
+  __endasm;
+}
 #endif
