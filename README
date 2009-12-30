@@ -33,4 +33,6 @@ Author(s):
   * Conrad Meyer <konrad@tylerc.org>
 
 TISDCC was inspired by the work done by Florian Richter <Florian_Richter AT
-gmx.de> in 2006.
+gmx.de> in 2006. There is plenty of code in this project that has been
+imported wholesale from a working copy of his project he sent me in 2007 or
+2008 (under the GPL). Thanks, Florian.
