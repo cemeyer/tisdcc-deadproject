@@ -2935,6 +2935,7 @@ void PushOP5() __naked
 
 void PushReal(void *ptr) __naked
 {
+  ptr;
   __asm
     push iy
     push ix
@@ -3130,6 +3131,7 @@ void CircCmd() __naked
 void ClearRect(unsigned char row1, unsigned char col1, unsigned char row2,
     unsigned char col2) __naked
 {
+  row1; col1; row2; col2;
   __asm
     push iy
     push ix
@@ -3614,6 +3616,7 @@ void HorizCmd() __naked
 
 unsigned char IBounds(unsigned char x, unsigned char y) __naked
 {
+  x; y;
   __asm
     push iy
     push bc
@@ -3637,6 +3640,7 @@ unsigned char IBounds(unsigned char x, unsigned char y) __naked
 
 unsigned char IBoundsFull(unsigned char x, unsigned char y) __naked
 {
+  x; y;
   __asm
     push iy
     push bc
@@ -3932,6 +3936,7 @@ void Regraph() __naked
 
 void SetAllPlots(unsigned char select) __naked
 {
+  select;
   __asm
     push iy
     push ix
@@ -4169,7 +4174,7 @@ unsigned char XftoI(void *ptr) __naked
     inc hl
     ld h,(hl)
     ld l,a
-    BCALL(_Xftol___db)
+    BCALL(_XftoI___db)
     pop hl
     ld l,a
     pop af
@@ -4228,7 +4233,7 @@ unsigned char YftoI(void *ptr) __naked
     inc hl
     ld h,(hl)
     ld l,a
-    BCALL(_Yftol___db)
+    BCALL(_YftoI___db)
     pop hl
     ld l,a
     pop af
@@ -4689,6 +4694,7 @@ unsigned char GetKey() __naked
 
 void *AdrLEle(void *list, unsigned int index) __naked
 {
+  list; index;
   __asm
     push iy
     ld iy,#flags___dw
@@ -5701,6 +5707,7 @@ void CLog() __naked
 
 void ClrLp(void *ptr, unsigned char n) __naked
 {
+  ptr; n;
   __asm
     push iy
     push hl
@@ -6151,6 +6158,7 @@ void EToX() __naked
 
 void *ExpToHex(void *ptr) __naked
 {
+  ptr;
   __asm
     push af
     push iy
@@ -6881,6 +6889,7 @@ void OP2Set8() __naked
 
 void OP2SetA(unsigned char i) __naked
 {
+  i;
   __asm
     push af
     push hl
