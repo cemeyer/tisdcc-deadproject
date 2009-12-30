@@ -13,9 +13,9 @@ unsigned char Bit_VertSplit() __naked
     push iy           ; save our iy value
     ld iy,#flags___dw ; load TIOS iy value
     BCALL(_Bit_VertSplit___db)
-    jr nz,screen_is_split
+    jr nz,split_active
     dec l
-screen_is_split:
+split_active:
     pop iy            ; restore iy
     ret
   __endasm;
@@ -6899,6 +6899,653 @@ void OP2SetA(unsigned char i) __naked
     ld a,(hl)
     ld iy,#flags___dw
     BCALL(_OP2Set8___db)
+    pop iy
+    pop hl
+    pop af
+    ret
+  __endasm;
+}
+
+void Plus1() __naked
+{
+  __asm
+    push af
+    push bc
+    push de
+    push hl
+    push ix
+    push iy
+    ld iy,#flags___dw
+    BCALL(_Plus1___db)
+    pop iy
+    pop ix
+    pop hl
+    pop de
+    pop bc
+    pop af
+    ret
+  __endasm;
+}
+
+void PToR() __naked
+{
+  __asm
+    push af
+    push bc
+    push de
+    push hl
+    push ix
+    push iy
+    ld iy,#flags___dw
+    BCALL(_PToR___db)
+    pop iy
+    pop ix
+    pop hl
+    pop de
+    pop bc
+    pop af
+    ret
+  __endasm;
+}
+
+void RandInit() __naked
+{
+  __asm
+    push bc
+    push de
+    push hl
+    push iy
+    ld iy,#flags___dw
+    BCALL(_RandInit___db)
+    pop iy
+    pop hl
+    pop de
+    pop bc
+    ret
+  __endasm;
+}
+
+void Random() __naked
+{
+  __asm
+    push af
+    push bc
+    push de
+    push hl
+    push ix
+    push iy
+    ld iy,#flags___dw
+    BCALL(_Random___db)
+    pop iy
+    pop ix
+    pop hl
+    pop de
+    pop bc
+    pop af
+    ret
+  __endasm;
+}
+
+void RName() __naked
+{
+  __asm
+    push af
+    push hl
+    push iy
+    ld iy,#flags___dw
+    BCALL(_RName___db)
+    pop iy
+    pop hl
+    pop af
+    ret
+  __endasm;
+}
+
+void RndGuard() __naked
+{
+  __asm
+    push af
+    push bc
+    push de
+    push hl
+    push ix
+    push iy
+    ld iy,#flags___dw
+    BCALL(_RndGuard___db)
+    pop iy
+    pop ix
+    pop hl
+    pop de
+    pop bc
+    pop af
+    ret
+  __endasm;
+}
+
+void RnFx() __naked
+{
+  __asm
+    push af
+    push bc
+    push de
+    push hl
+    push ix
+    push iy
+    ld iy,#flags___dw
+    BCALL(_RnFx___db)
+    pop iy
+    pop ix
+    pop hl
+    pop de
+    pop bc
+    pop af
+    ret
+  __endasm;
+}
+
+void Round(unsigned char n) __naked
+{
+  n;
+  __asm
+    push af
+    push bc
+    push de
+    push hl
+    push ix
+    push iy
+    ld iy,#flags___dw
+    ld hl,#14
+    add hl,sp
+    ld d,(hl)
+    BCALL(_Round___db)
+    pop iy
+    pop ix
+    pop hl
+    pop de
+    pop bc
+    pop af
+    ret
+  __endasm;
+}
+
+void RToD() __naked
+{
+  __asm
+    push af
+    push bc
+    push de
+    push hl
+    push ix
+    push iy
+    ld iy,#flags___dw
+    BCALL(_RToD___db)
+    pop iy
+    pop ix
+    pop hl
+    pop de
+    pop bc
+    pop af
+    ret
+  __endasm;
+}
+
+void RToP() __naked
+{
+  __asm
+    push af
+    push bc
+    push de
+    push hl
+    push ix
+    push iy
+    ld iy,#flags___dw
+    BCALL(_RToP___db)
+    pop iy
+    pop ix
+    pop hl
+    pop de
+    pop bc
+    pop af
+    ret
+  __endasm;
+}
+
+void Sin() __naked
+{
+  __asm
+    push af
+    push bc
+    push de
+    push hl
+    push ix
+    push iy
+    ld iy,#flags___dw
+    BCALL(_Sin___db)
+    pop iy
+    pop ix
+    pop hl
+    pop de
+    pop bc
+    pop af
+    ret
+  __endasm;
+}
+
+void SinCosRad() __naked
+{
+  __asm
+    push af
+    push bc
+    push de
+    push hl
+    push ix
+    push iy
+    ld iy,#flags___dw
+    BCALL(_SinCosRad___db)
+    pop iy
+    pop ix
+    pop hl
+    pop de
+    pop bc
+    pop af
+    ret
+  __endasm;
+}
+
+void SinH() __naked
+{
+  __asm
+    push af
+    push bc
+    push de
+    push hl
+    push ix
+    push iy
+    ld iy,#flags___dw
+    BCALL(_SinH___db)
+    pop iy
+    pop ix
+    pop hl
+    pop de
+    pop bc
+    pop af
+    ret
+  __endasm;
+}
+
+void SinHCosH() __naked
+{
+  __asm
+    push af
+    push bc
+    push de
+    push hl
+    push ix
+    push iy
+    ld iy,#flags___dw
+    BCALL(_SinHCosH___db)
+    pop iy
+    pop ix
+    pop hl
+    pop de
+    pop bc
+    pop af
+    ret
+  __endasm;
+}
+
+void SqRoot() __naked
+{
+  __asm
+    push af
+    push bc
+    push de
+    push hl
+    push ix
+    push iy
+    ld iy,#flags___dw
+    BCALL(_SqRoot___db)
+    pop iy
+    pop ix
+    pop hl
+    pop de
+    pop bc
+    pop af
+    ret
+  __endasm;
+}
+
+void Tan() __naked
+{
+  __asm
+    push af
+    push bc
+    push de
+    push hl
+    push ix
+    push iy
+    ld iy,#flags___dw
+    BCALL(_Tan___db)
+    pop iy
+    pop ix
+    pop hl
+    pop de
+    pop bc
+    pop af
+    ret
+  __endasm;
+}
+
+void TanH() __naked
+{
+  __asm
+    push af
+    push bc
+    push de
+    push hl
+    push ix
+    push iy
+    ld iy,#flags___dw
+    BCALL(_TanH___db)
+    pop iy
+    pop ix
+    pop hl
+    pop de
+    pop bc
+    pop af
+    ret
+  __endasm;
+}
+
+void TenX() __naked
+{
+  __asm
+    push af
+    push bc
+    push de
+    push hl
+    push ix
+    push iy
+    ld iy,#flags___dw
+    BCALL(_TenX___db)
+    pop iy
+    pop ix
+    pop hl
+    pop de
+    pop bc
+    pop af
+    ret
+  __endasm;
+}
+
+void ThetaName() __naked
+{
+  __asm
+    push af
+    push hl
+    push iy
+    ld iy,#flags___dw
+    BCALL(_ThetaName___db)
+    pop iy
+    pop hl
+    pop af
+    ret
+  __endasm;
+}
+
+void Times2() __naked
+{
+  __asm
+    push af
+    push bc
+    push de
+    push hl
+    push iy
+    ld iy,#flags___dw
+    BCALL(_Times2___db)
+    pop iy
+    pop hl
+    pop de
+    pop bc
+    pop af
+    ret
+  __endasm;
+}
+
+void TimesPt5() __naked
+{
+  __asm
+    push af
+    push bc
+    push de
+    push hl
+    push iy
+    ld iy,#flags___dw
+    BCALL(_TimesPt5___db)
+    pop iy
+    pop hl
+    pop de
+    pop bc
+    pop af
+    ret
+  __endasm;
+}
+
+void TName() __naked
+{
+  __asm
+    push af
+    push hl
+    push iy
+    ld iy,#flags___dw
+    BCALL(_TName___db)
+    pop iy
+    pop hl
+    pop af
+    ret
+  __endasm;
+}
+
+unsigned char ToFrac() __naked
+{
+  __asm
+    push af
+    push bc
+    push de
+    push ix
+    push iy
+    push hl
+    ld iy,#flags___dw
+    BCALL(_ToFrac___db)
+    pop hl
+    ld l,0
+    jr c,___failure
+    inc l
+___failure:
+    pop iy
+    pop ix
+    pop de
+    pop bc
+    pop af
+    ret
+  __endasm;
+}
+
+void Trunc() __naked
+{
+  __asm
+    push af
+    push bc
+    push de
+    push hl
+    push ix
+    push iy
+    ld iy,#flags___dw
+    BCALL(_Trunc___db)
+    pop iy
+    pop ix
+    pop hl
+    pop de
+    pop bc
+    pop af
+    ret
+  __endasm;
+}
+
+void XName() __naked
+{
+  __asm
+    push af
+    push hl
+    push iy
+    ld iy,#flags___dw
+    BCALL(_XName___db)
+    pop iy
+    pop hl
+    pop af
+    ret
+  __endasm;
+}
+
+void XRootY() __naked
+{
+  __asm
+    push af
+    push bc
+    push de
+    push hl
+    push ix
+    push iy
+    ld iy,#flags___dw
+    BCALL(_XRootY___db)
+    pop iy
+    pop ix
+    pop hl
+    pop de
+    pop bc
+    pop af
+    ret
+  __endasm;
+}
+
+void YName() __naked
+{
+  __asm
+    push af
+    push hl
+    push iy
+    ld iy,#flags___dw
+    BCALL(_YName___db)
+    pop iy
+    pop hl
+    pop af
+    ret
+  __endasm;
+}
+
+void YToX() __naked
+{
+  __asm
+    push af
+    push bc
+    push de
+    push hl
+    push ix
+    push iy
+    ld iy,#flags___dw
+    BCALL(_YToX___db)
+    pop iy
+    pop ix
+    pop hl
+    pop de
+    pop bc
+    pop af
+    ret
+  __endasm;
+}
+
+void Zero16D(void *ptr) __naked
+{
+  ptr;
+  __asm
+    push af
+    push hl
+    push iy
+    ld iy,#flags___dw
+    ld hl,#8
+    add hl,sp
+    ld a,(hl)
+    inc hl
+    ld h,(hl)
+    ld l,a
+    BCALL(_Zero16D___db)
+    pop iy
+    pop hl
+    pop af
+    ret
+  __endasm;
+}
+
+void ZeroOP(void *ptr) __naked
+{
+  ptr;
+  __asm
+    push af
+    push hl
+    push iy
+    ld iy,#flags___dw
+    ld hl,#8
+    add hl,sp
+    ld a,(hl)
+    inc hl
+    ld h,(hl)
+    ld l,a
+    BCALL(_ZeroOP___db)
+    pop iy
+    pop hl
+    pop af
+    ret
+  __endasm;
+}
+
+void ZeroOP1() __naked
+{
+  __asm
+    push af
+    push hl
+    push iy
+    ld iy,#flags___dw
+    BCALL(_ZeroOP1___db)
+    pop iy
+    pop hl
+    pop af
+    ret
+  __endasm;
+}
+
+void ZeroOP2() __naked
+{
+  __asm
+    push af
+    push hl
+    push iy
+    ld iy,#flags___dw
+    BCALL(_ZeroOP2___db)
+    pop iy
+    pop hl
+    pop af
+    ret
+  __endasm;
+}
+
+void ZeroOP3() __naked
+{
+  __asm
+    push af
+    push hl
+    push iy
+    ld iy,#flags___dw
+    BCALL(_ZeroOP3___db)
     pop iy
     pop hl
     pop af
