@@ -42,6 +42,10 @@ def main():
       help="predefine NAME as a macro", metavar="NAME")
   parser.add_option("-I", None, dest="includes", action="append", \
       help="add DIR to include path", metavar="DIR")
+  parser.add_option("-L", None, dest="libpaths", action="append", \
+      help="add DIR to lib path", metavar="DIR")
+  parser.add_option("-l", None, dest="libs", action="append", \
+      help="link program with LIB", metavar="LIB")
   parser.add_option("-t", None, metavar="CALC", dest="platform", \
       help="target CALC (ti83, ti83p_ion, etc.)")
   parser.add_option("-o", None, dest="filename", help="output to FILE", \

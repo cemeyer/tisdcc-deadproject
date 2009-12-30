@@ -19,6 +19,7 @@
 import os
 import shutil
 import subprocess
+import sys
 import tempfile
 
 
@@ -219,6 +220,8 @@ def compile(codeobj, options):
 
   cwd = os.getcwd()
   wd = None
+  stdout = ""
+  stderr = ""
   try:
     wd = tempfile.mkdtemp()
 
@@ -250,10 +253,6 @@ def compile(codeobj, options):
       return codeobject_from_file(tempsrc.replace(".c",".o"), \
           tempfile=True)
 
-    print "stdout:"
-    print stdout
-    print "stderr:"
-    print stderr
     raise Exception("failed to compile")
   except:
     print "wd:", wd
@@ -263,6 +262,7 @@ def compile(codeobj, options):
     if wd is not None:
       shutil.rmtree(wd)
   finally:
+    sdccoutput(stdout, stderr)
     os.chdir(cwd)
 
 
@@ -275,6 +275,8 @@ def link(codeobjlist, target, libdir, name, extraflags=[]):
 
   cwd = os.getcwd()
   wd = None
+  stdout = ""
+  stderr = ""
   try:
     wd = tempfile.mkdtemp()
 
@@ -312,10 +314,6 @@ def link(codeobjlist, target, libdir, name, extraflags=[]):
     if os.path.exists(outfile):
       return codeobject_from_file(outfile, tempfile=True)
 
-    print "stdout:"
-    print stdout
-    print "stderr:"
-    print stderr
     raise Exception("failed to link")
   except:
     print "wd:", wd
@@ -325,6 +323,7 @@ def link(codeobjlist, target, libdir, name, extraflags=[]):
     if wd is not None:
       shutil.rmtree(wd)
   finally:
+    sdccoutput(stdout, stderr)
     os.chdir(cwd)
 
 
@@ -458,6 +457,8 @@ def compileonly(codeobj, options):
 
   cwd = os.getcwd()
   wd = None
+  stdout = ""
+  stderr = ""
   try:
     wd = tempfile.mkdtemp()
 
@@ -489,10 +490,6 @@ def compileonly(codeobj, options):
       return codeobject_from_file(tempsrc.replace(".c",".asm"), \
           tempfile=True)
 
-    print "stdout:"
-    print stdout
-    print "stderr:"
-    print stderr
     raise Exception("failed to compile")
   except:
     print "wd:", wd
@@ -502,6 +499,7 @@ def compileonly(codeobj, options):
     if wd is not None:
       shutil.rmtree(wd)
   finally:
+    sdccoutput(stdout, stderr)
     os.chdir(cwd)
 
 
@@ -515,6 +513,8 @@ def library(codeobjlist, options):
 
   cwd = os.getcwd()
   wd = None
+  stdout = ""
+  stderr = ""
   try:
     wd = tempfile.mkdtemp()
 
@@ -541,10 +541,6 @@ def library(codeobjlist, options):
     if os.path.exists(outfile):
       return codeobject_from_file(outfile, tempfile=True)
 
-    print "stdout:"
-    print stdout
-    print "stderr:"
-    print stderr
     raise Exception("failed to create a library")
   except:
     print "wd:", wd
@@ -554,4 +550,15 @@ def library(codeobjlist, options):
     if wd is not None:
       shutil.rmtree(wd)
   finally:
+    sdccoutput(stdout, stderr)
     os.chdir(cwd)
+
+
+
+def sdccoutput(stdout, stderr):
+  if stdout is not None and len(stdout) > 0:
+    print "SDCC stdout:"
+    sys.stdout.write(stdout)
+  if stderr is not None and len(stderr) > 0:
+    print "SDCC stderr:"
+    sys.stdout.write(stderr)
