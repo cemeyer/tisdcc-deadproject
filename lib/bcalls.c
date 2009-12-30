@@ -13,9 +13,9 @@ unsigned char Bit_VertSplit() __naked
     push iy           ; save our iy value
     ld iy,#flags___dw ; load TIOS iy value
     BCALL(_Bit_VertSplit___db)
-    jr nz,split_active
+    jr nz,___split_activeZZ100
     dec l
-split_active:
+___split_activeZZ100:
     pop iy            ; restore iy
     ret
   __endasm;
@@ -28,9 +28,9 @@ unsigned char CheckSplitFlag() __naked
     push iy           ; save our iy value
     ld iy,#flags___dw ; load TIOS iy value
     BCALL(_CheckSplitFlag___db)
-    jr z,split_inactive
+    jr z,___split_inactiveZZ101
     inc l
-split_inactive:
+___split_inactiveZZ101:
     pop iy            ; restore iy
     ret
   __endasm;
@@ -3787,10 +3787,10 @@ unsigned char IPoint(unsigned char col, unsigned char row,
     ld d,(hl)
     BCALL(_IPoint___db)
     pop hl
-    ld l,1
-    jr z,point_is_off
+    ld l,#1
+    jr z,___point_is_offZZ102
     dec l
-point_is_off:
+___point_is_offZZ102:
     pop af
     pop de
     pop bc
@@ -3854,10 +3854,10 @@ unsigned char PixelTest() __naked
     ld iy,#flags___dw
     BCALL(_PixelTest___db)
     pop hl
-    ld l,1
-    jr z,__point_is_off
+    ld l,#1
+    jr z,___point_is_offZZ103
     dec l
-__point_is_off:
+___point_is_offZZ103:
     pop bc
     pop de
     pop ix
@@ -4934,9 +4934,9 @@ unsigned int InsertList(unsigned char type, void *ptr, unsigned int idx,
     ld a,b
     cp #0
     ccf
-    jr z,___set_zero
+    jr z,___set_zeroZZ104
     scf
-___set_zero:
+___set_zeroZZ104:
     pop hl
     ld a,c
     pop bc
@@ -4991,12 +4991,12 @@ char AbsO1O2Cp() __naked
     BCALL(_AbsO1O2Cp___db)
     pop hl
     ld l,#0
-    jr z,___done
+    jr z,___doneZZ123
     dec l
-    jr c,___done
+    jr c,___doneZZ123
     inc l
     inc l
-___done:
+___doneZZ123:
     pop af
     pop bc
     pop de
@@ -5445,9 +5445,9 @@ unsigned char CkInt(void *ptr) __naked
     pop ix
     pop hl
     ld l,#1
-    jr z,___done
+    jr z,___doneZZ124
     dec l
-___done:
+___doneZZ124:
     pop de
     pop bc
     pop af
@@ -5477,9 +5477,9 @@ unsigned char CkOdd(void *ptr) __naked
     pop ix
     pop hl
     ld l,#1
-    jr z,___done
+    jr z,___doneZZ125
     dec l
-___done:
+___doneZZ125:
     pop de
     pop bc
     pop af
@@ -5496,9 +5496,9 @@ unsigned char CkOP1C0() __naked
     BCALL(_CkOP1C0___db)
     pop iy
     ld l,#1
-    jr z,___done
+    jr z,___doneZZ126
     dec l
-___done:
+___doneZZ126:
     pop af
     ret
   __endasm;
@@ -5513,9 +5513,9 @@ unsigned char CkOP1Cplx() __naked
     BCALL(_CkOP1Cplx___db)
     pop iy
     ld l,#1
-    jr z,___done
+    jr z,___doneZZ127
     dec l
-___done:
+___doneZZ127:
     pop af
     ret
   __endasm;
@@ -5530,9 +5530,9 @@ unsigned char CkOP1FP0() __naked
     BCALL(_CkOP1FP0___db)
     pop iy
     ld l,#1
-    jr z,___done
+    jr z,___doneZZ128
     dec l
-___done:
+___doneZZ128:
     pop af
     ret
   __endasm;
@@ -5547,9 +5547,9 @@ unsigned char CkOP1Pos() __naked
     BCALL(_CkOP1Pos___db)
     pop iy
     ld l,#1
-    jr z,___done
+    jr z,___doneZZ129
     dec l
-___done:
+___doneZZ129:
     pop af
     ret
   __endasm;
@@ -5564,9 +5564,9 @@ unsigned char CkOP1Real() __naked
     BCALL(_CkOP1Real___db)
     pop iy
     ld l,#1
-    jr z,___done
+    jr z,___doneZZ130
     dec l
-___done:
+___doneZZ130:
     pop af
     ret
   __endasm;
@@ -5581,9 +5581,9 @@ unsigned char CkOP2FP0() __naked
     BCALL(_CkOP2FP0___db)
     pop iy
     ld l,#1
-    jr z,___done
+    jr z,___doneZZ131
     dec l
-___done:
+___doneZZ131:
     pop af
     ret
   __endasm;
@@ -5598,9 +5598,9 @@ unsigned char CkOP2Pos() __naked
     BCALL(_CkOP2Pos___db)
     pop iy
     ld l,#1
-    jr z,___done
+    jr z,___doneZZ132
     dec l
-___done:
+___doneZZ132:
     pop af
     ret
   __endasm;
@@ -5615,9 +5615,9 @@ unsigned char CkOP2Real() __naked
     BCALL(_CkOP2Real___db)
     pop iy
     ld l,#1
-    jr z,___done
+    jr z,___doneZZ133
     dec l
-___done:
+___doneZZ133:
     pop af
     ret
   __endasm;
@@ -5636,9 +5636,9 @@ unsigned char CkPosInt() __naked
     BCALL(_CkPosInt___db)
     pop hl
     ld l,#1
-    jr z,___done
+    jr z,___doneZZ134
     dec l
-___done:
+___doneZZ134:
     pop af
     pop bc
     pop de
@@ -5872,12 +5872,12 @@ char CpOP1OP2() __naked
     BCALL(_CpOP1OP2___db)
     pop hl
     ld l,#0
-    jr z,___done
+    jr z,___doneZZ135
     dec l
-    jr c,___done
+    jr c,___doneZZ135
     inc l
     inc l
-___done:
+___doneZZ135:
     pop af
     pop bc
     pop de
@@ -5898,12 +5898,12 @@ char CpOP4OP3() __naked
     BCALL(_CpOP4OP3___db)
     pop hl
     ld l,#0
-    jr z,___done
+    jr z,___doneZZ136
     dec l
-    jr c,___done
+    jr c,___doneZZ136
     inc l
     inc l
-___done:
+___doneZZ136:
     pop af
     pop bc
     pop de
@@ -7358,10 +7358,10 @@ unsigned char ToFrac() __naked
     ld iy,#flags___dw
     BCALL(_ToFrac___db)
     pop hl
-    ld l,0
-    jr c,___failure
+    ld l,#0
+    jr c,___failureZZ105
     inc l
-___failure:
+___failureZZ105:
     pop iy
     pop ix
     pop de
