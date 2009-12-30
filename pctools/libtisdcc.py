@@ -503,3 +503,55 @@ def compileonly(codeobj, options):
       shutil.rmtree(wd)
   finally:
     os.chdir(cwd)
+
+
+
+def library(codeobjlist, options):
+  assert(len(codeobjlist) >= 1)
+  assert(options.platform in PLATFORMS)
+  assert(options.filename is not None)
+  for codeobj in codeobjlist:
+    assert(codeobj.type == CodeType.OBJECT)
+
+  cwd = os.getcwd()
+  wd = None
+  try:
+    wd = tempfile.mkdtemp()
+
+    assert(len(wd) > 4)
+    os.chdir(wd)
+
+    srcfiles = []
+    for codeobj in codeobjlist:
+      osfh, tempsrc = tempfile.mkstemp(suffix=".o", dir=wd)
+      os.close(osfh)
+      fh = open(tempsrc, "wb")
+      fh.write(codeobj.contents)
+      fh.close()
+      srcfiles.append(tempsrc)
+    
+    outfile = wd + "/" + options.filename
+
+    program = ["sdcclib", outfile] + srcfiles
+    proc = subprocess.Popen(program, \
+        shell=False, close_fds=True, stderr=subprocess.PIPE, \
+        stdout=subprocess.PIPE, stdin=subprocess.PIPE)
+    stdout, stderr = proc.communicate()
+
+    if os.path.exists(outfile):
+      return codeobject_from_file(outfile, tempfile=True)
+
+    print "stdout:"
+    print stdout
+    print "stderr:"
+    print stderr
+    raise Exception("failed to create a library")
+  except:
+    print "wd:", wd
+    raise
+  else:
+    # clean up after ourselves
+    if wd is not None:
+      shutil.rmtree(wd)
+  finally:
+    os.chdir(cwd)

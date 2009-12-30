@@ -111,7 +111,7 @@ def main():
       if not options.do_not_varup:
         resco = libtisdcc.ihx_to_prgm(resco, options.filename, options.platform)
     else:
-      resco = libtisdcc.library(newcos)
+      resco = libtisdcc.library(newcos, options)
 
     resco.writetofile(options.filename)
 
