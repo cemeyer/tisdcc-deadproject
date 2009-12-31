@@ -4651,7 +4651,7 @@ void CanAlphIns() __naked
   __asm
     push iy
     ld iy,#flags___dw
-    BCALL(_CanAlphaIns___db)
+    BCALL(_CanAlphIns___db)
     pop iy
     ret
   __endasm;
