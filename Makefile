@@ -16,10 +16,10 @@ all: includes libs startups
 includes:
 	cd include/ ; $(MAKE) ; cd ..
 
-libs:
+libs: includes
 	cd lib/ ; $(MAKE) SDCC=$(SDCC) SDCCLIB=$(SDCCLIB) ; cd ..
 
-startups:
+startups: includes
 	cd startup/ ; $(MAKE) SDCCAS=$(SDCCAS) ; cd ..
 
 install: all
@@ -35,7 +35,7 @@ install: all
 	cp lib/*.lib install-prep/lib/
 	cp startup/*.o install-prep/startup/
 	cp doc/index.html install-prep/doc/
-	sed -i -e 's|^DATADIR=""$$|DATADIR="$(DATADIR)"|' \
+	sed -i -e 's|^DATADIR=.*$$|DATADIR="$(DATADIR)"|' \
 	  install-prep/tisdcc install-prep/libtisdcc.py
 	mkdir -p $(DESTDIR)$(BINDIR)
 	mkdir -p $(DESTDIR)$(DATADIR)/$(NAME)/startup/
