@@ -268,11 +268,9 @@ def compile(codeobj, options):
     if verbose:
       print "wd:", wd
     raise
-  else:
-    # clean up after ourselves
-    if wd is not None:
-      shutil.rmtree(wd)
   finally:
+    # clean up after ourselves
+    rmtree(wd)
     sdccoutput(stdout, stderr)
     os.chdir(cwd)
 
@@ -324,7 +322,7 @@ def link(codeobjlist, options, startupobjdir):
     startupobjfile2 = "%s/%s2.o" % (startupobjdir, target)
     program = ["sdcc", "-mz80", "--no-std-crt0", "--code-loc", \
         PLATFORMDATA[target]['codeloc'], "--data-loc", \
-        PLATFORMDATA[target]['dataloc']] + extraflags + \
+        PLATFORMDATA[target]['dataloc']] + \
         ["-Wl" + startupobjfile1, "-Wlname.o", "-Wl" + startupobjfile2] + \
         extraflags + srcfiles
     proc = Popen(program)
@@ -338,11 +336,9 @@ def link(codeobjlist, options, startupobjdir):
     if verbose:
       print "wd:", wd
     raise
-  else:
-    # clean up after ourselves
-    if wd is not None:
-      shutil.rmtree(wd)
   finally:
+    # clean up after ourselves
+    rmtree(wd)
     sdccoutput(stdout, stderr)
     os.chdir(cwd)
 
@@ -523,11 +519,9 @@ def compileonly(codeobj, options):
     if verbose:
       print "wd:", wd
     raise
-  else:
-    # clean up after ourselves
-    if wd is not None:
-      shutil.rmtree(wd)
   finally:
+    # clean up after ourselves
+    rmtree(wd)
     sdccoutput(stdout, stderr)
     os.chdir(cwd)
 
@@ -572,11 +566,9 @@ def library(codeobjlist, options):
     if verbose:
       print "wd:", wd
     raise
-  else:
-    # clean up after ourselves
-    if wd is not None:
-      shutil.rmtree(wd)
   finally:
+    # clean up after ourselves
+    rmtree(wd)
     sdccoutput(stdout, stderr)
     os.chdir(cwd)
 
@@ -600,3 +592,10 @@ def Popen(list):
   return subprocess.Popen(list, \
       shell=False, close_fds=True, stderr=subprocess.PIPE, \
       stdout=subprocess.PIPE, stdin=subprocess.PIPE)
+
+
+
+def rmtree(dir):
+  if dir is not None:
+    shutil.rmtree(dir)
+  #print "wd:", dir
