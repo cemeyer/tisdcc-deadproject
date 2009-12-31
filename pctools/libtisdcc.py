@@ -24,7 +24,9 @@ import tempfile
 
 
 
+DATADIR=""
 VERSION = "0.2"
+verbose = False
 
 
 
@@ -241,12 +243,20 @@ def compile(codeobj, options):
     if options.defines:
       for defn in options.defines:
         extraflags.append("-D%s" % defn)
+    if options.libpaths:
+      for libp in options.libpaths:
+        extraflags.append("-L%s" % libp)
+    if options.libs:
+      for lib in options.libs:
+        extraflags.appenD("-l%s" % lib)
+    extraflags.append("-I" + DATADIR + "/tisdcc/include/")
+    extraflags.append("-L" + DATADIR + "/tisdcc/lib/")
+    extraflags.append("-l" + options.platform)
+    extraflags.append("-D" + options.platform.upper())
 
-    proc = subprocess.Popen(["sdcc", "-mz80", "--opt-code-size", \
-        "--peep-asm", "--stack-auto", "--std-sdcc99", "--portmode=z80"] + \
-        extraflags + ["-c", tempsrc], \
-        shell=False, close_fds=True, stderr=subprocess.PIPE, \
-        stdout=subprocess.PIPE, stdin=subprocess.PIPE)
+    proc = Popen(["sdcc", "-mz80", "--opt-code-size", \
+        "--peep-asm", "--stack-auto", "--std-sdcc99"] + \
+        extraflags + ["-c", tempsrc])
     stdout, stderr = proc.communicate()
 
     if os.path.exists(tempsrc.replace(".c",".o")):
@@ -255,7 +265,8 @@ def compile(codeobj, options):
 
     raise Exception("failed to compile")
   except:
-    print "wd:", wd
+    if verbose:
+      print "wd:", wd
     raise
   else:
     # clean up after ourselves
@@ -267,7 +278,9 @@ def compile(codeobj, options):
 
 
 
-def link(codeobjlist, target, libdir, name, extraflags=[]):
+def link(codeobjlist, options, startupobjdir):
+  target = options.platform
+  name = options.filename
   assert(len(codeobjlist) >= 1)
   assert(target in PLATFORMS)
   for codeobj in codeobjlist:
@@ -297,18 +310,24 @@ def link(codeobjlist, target, libdir, name, extraflags=[]):
       srcfiles.append(tempsrc)
     
     outfile = srcfiles[0].replace(".o", ".ihx")
+    extraflags = []
+    if options.libpaths:
+      for libp in options.libpaths:
+        extraflags.append("-L%s" % libp)
+    if options.libs:
+      for lib in options.libs:
+        extraflags.appenD("-l%s" % lib)
+    extraflags.append("-L" + DATADIR + "/tisdcc/lib/")
+    extraflags.append("-l" + options.platform)
 
-    startupobjfile1 = "%s/%s1.o" % (libdir, target)
-    startupobjfile2 = "%s/%s2.o" % (libdir, target)
-    emptyobj = "%s/empty.o" % libdir
+    startupobjfile1 = "%s/%s1.o" % (startupobjdir, target)
+    startupobjfile2 = "%s/%s2.o" % (startupobjdir, target)
     program = ["sdcc", "-mz80", "--no-std-crt0", "--code-loc", \
         PLATFORMDATA[target]['codeloc'], "--data-loc", \
         PLATFORMDATA[target]['dataloc']] + extraflags + \
         ["-Wl" + startupobjfile1, "-Wlname.o", "-Wl" + startupobjfile2] + \
-        srcfiles
-    proc = subprocess.Popen(program, \
-        shell=False, close_fds=True, stderr=subprocess.PIPE, \
-        stdout=subprocess.PIPE, stdin=subprocess.PIPE)
+        extraflags + srcfiles
+    proc = Popen(program)
     stdout, stderr = proc.communicate()
 
     if os.path.exists(outfile):
@@ -316,7 +335,8 @@ def link(codeobjlist, target, libdir, name, extraflags=[]):
 
     raise Exception("failed to link")
   except:
-    print "wd:", wd
+    if verbose:
+      print "wd:", wd
     raise
   else:
     # clean up after ourselves
@@ -478,12 +498,20 @@ def compileonly(codeobj, options):
     if options.defines:
       for defn in options.defines:
         extraflags.append("-D%s" % defn)
+    if options.libpaths:
+      for libp in options.libpaths:
+        extraflags.append("-L%s" % libp)
+    if options.libs:
+      for lib in options.libs:
+        extraflags.appenD("-l%s" % lib)
+    extraflags.append("-I" + DATADIR + "/tisdcc/include/")
+    extraflags.append("-L" + DATADIR + "/tisdcc/lib/")
+    extraflags.append("-l" + options.platform)
+    extraflags.append("-D" + options.platform.upper())
 
-    proc = subprocess.Popen(["sdcc", "-mz80", "--opt-code-size", \
-        "--peep-asm", "--stack-auto", "--std-sdcc99", "--portmode=z80"] + \
-        extraflags + ["-c", tempsrc], \
-        shell=False, close_fds=True, stderr=subprocess.PIPE, \
-        stdout=subprocess.PIPE, stdin=subprocess.PIPE)
+    proc = Popen(["sdcc", "-mz80", "--opt-code-size", \
+        "--peep-asm", "--stack-auto", "--std-sdcc99"] + \
+        extraflags + ["-c", tempsrc])
     stdout, stderr = proc.communicate()
 
     if os.path.exists(tempsrc.replace(".c",".asm")):
@@ -492,7 +520,8 @@ def compileonly(codeobj, options):
 
     raise Exception("failed to compile")
   except:
-    print "wd:", wd
+    if verbose:
+      print "wd:", wd
     raise
   else:
     # clean up after ourselves
@@ -532,10 +561,7 @@ def library(codeobjlist, options):
     
     outfile = wd + "/" + options.filename
 
-    program = ["sdcclib", outfile] + srcfiles
-    proc = subprocess.Popen(program, \
-        shell=False, close_fds=True, stderr=subprocess.PIPE, \
-        stdout=subprocess.PIPE, stdin=subprocess.PIPE)
+    proc = Popen(["sdcclib", outfile] + srcfiles)
     stdout, stderr = proc.communicate()
 
     if os.path.exists(outfile):
@@ -543,7 +569,8 @@ def library(codeobjlist, options):
 
     raise Exception("failed to create a library")
   except:
-    print "wd:", wd
+    if verbose:
+      print "wd:", wd
     raise
   else:
     # clean up after ourselves
@@ -556,9 +583,20 @@ def library(codeobjlist, options):
 
 
 def sdccoutput(stdout, stderr):
+  if not verbose:
+    return
   if stdout is not None and len(stdout) > 0:
     print "SDCC stdout:"
     sys.stdout.write(stdout)
   if stderr is not None and len(stderr) > 0:
     print "SDCC stderr:"
     sys.stdout.write(stderr)
+
+
+
+def Popen(list):
+  if verbose:
+    print "subprocess:", list
+  return subprocess.Popen(list, \
+      shell=False, close_fds=True, stderr=subprocess.PIPE, \
+      stdout=subprocess.PIPE, stdin=subprocess.PIPE)

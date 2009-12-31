@@ -20,15 +20,19 @@
 import optparse
 import sys
 
+
+DATADIR=""
+
+
+sys.path.append(DATADIR + "/tisdcc/")
+
+
 import libtisdcc
 CodeType = libtisdcc.CodeType
 
 
 
 def main():
-  # TODO: don't hardcode this...
-  libdir = "/home/konrad/projects/tisdcc/startup"
-  
   parser = optparse.OptionParser(usage="Usage: %prog [options] file...", \
       version="%prog " + libtisdcc.VERSION)
 
@@ -50,12 +54,17 @@ def main():
       help="target CALC (ti83, ti83p_ion, etc.)")
   parser.add_option("-o", None, dest="filename", help="output to FILE", \
       metavar="FILE")
+  parser.add_option("-v", None, dest="verbose", help="turn on verbose mode", \
+      action="store_true")
 
   options, args = parser.parse_args()
 
   if options.platform is None:
     print "Sorry, please specify what model you are targetting."
     sys.exit(1)
+
+  if options.verbose:
+    libtisdcc.verbose = True
 
   cos = []
   for arg in args:
@@ -111,7 +120,7 @@ def main():
 
     if outputtype in (CodeType.PROGRAM, CodeType.IHX):
       # TODO: respect extraflags
-      resco = libtisdcc.link(newcos, options.platform, libdir, options.filename)
+      resco = libtisdcc.link(newcos, options, DATADIR + "/tisdcc/startup")
       if not options.do_not_varup:
         resco = libtisdcc.ihx_to_prgm(resco, options.filename, options.platform)
     else:

@@ -1,6 +1,9 @@
 To install tisdcc:
-  * cd lib ; make ; cd ..     # builds the library and object files from
-                              # source
-  * make install              # install. You can override BINDIR, LIBDIR,
-                              # DOCDIR, and set DESTDIR to install to a
-                              # buildroot
+  * make install              # install. You can override BINDIR, DOCDIR,
+                              # and set DESTDIR to install to a buildroot.
+                              # Additionally SDCC and SDCCAS can be
+                              # overridden (they default to Fedora's, i.e.
+                              # sdcc and sdcc-as-z80).
+                              #
+                              # Debian example:
+                              # make install PREFIX=/usr SDCCAS=as-z80
