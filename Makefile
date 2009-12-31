@@ -20,7 +20,7 @@ libs:
 	cd lib/ ; $(MAKE) SDCC=$(SDCC) SDCCLIB=$(SDCCLIB) ; cd ..
 
 startups:
-	cd startup/ ; $(MAKE) ; cd ..
+	cd startup/ ; $(MAKE) SDCCAS=$(SDCCAS) ; cd ..
 
 install: all
 	echo "PREFIX: $(PREFIX) BINDIR: $(BINDIR) DESTDIR: $(DESTDIR)"
