@@ -248,7 +248,7 @@ def compile(codeobj, options):
         extraflags.append("-L%s" % libp)
     if options.libs:
       for lib in options.libs:
-        extraflags.appenD("-l%s" % lib)
+        extraflags.append("-l%s" % lib)
     extraflags.append("-I" + DATADIR + "/tisdcc/include/")
     extraflags.append("-L" + DATADIR + "/tisdcc/lib/")
     extraflags.append("-l" + options.platform)
@@ -314,7 +314,7 @@ def link(codeobjlist, options, startupobjdir):
         extraflags.append("-L%s" % libp)
     if options.libs:
       for lib in options.libs:
-        extraflags.appenD("-l%s" % lib)
+        extraflags.append("-l%s" % lib)
     extraflags.append("-L" + DATADIR + "/tisdcc/lib/")
     extraflags.append("-l" + options.platform)
 
