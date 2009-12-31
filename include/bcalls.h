@@ -384,4 +384,8 @@ void ZeroOP(void *ptr);
 void ZeroOP1();
 void ZeroOP2();
 void ZeroOP3();
+void *AdrMEle(void *ptr, unsigned char row, unsigned char col);
+void *AdrMRow(void *ptr, unsigned char row);
+void *GetMToOP1(void *ptr, unsigned char row, unsigned char col);
+void *PutToMat(void *ptr, unsigned char row, unsigned char col);
 #endif

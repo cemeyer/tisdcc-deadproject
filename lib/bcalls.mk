@@ -5,6 +5,8 @@ ACos.o \
 ACosH.o \
 ACosRad.o \
 AdrLEle.o \
+AdrMEle.o \
+AdrMRow.o \
 AllEq.o \
 AllocFPS1.o \
 AllocFPS.o \
@@ -209,6 +211,7 @@ Frac.o \
 GetCSC.o \
 GetKey.o \
 GetLToOP1.o \
+GetMToOP1.o \
 GrBufClr.o \
 GrBufCpy.o \
 GrphCirc.o \
@@ -301,6 +304,7 @@ PutPS.o \
 PutS.o \
 PutTokString.o \
 PutToL.o \
+PutToMat.o \
 RandInit.o \
 Random.o \
 Rec1stByte.o \
