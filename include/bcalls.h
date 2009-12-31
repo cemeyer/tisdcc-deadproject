@@ -388,4 +388,10 @@ void *AdrMEle(void *ptr, unsigned char row, unsigned char col);
 void *AdrMRow(void *ptr, unsigned char row);
 void *GetMToOP1(void *ptr, unsigned char row, unsigned char col);
 void *PutToMat(void *ptr, unsigned char row, unsigned char col);
+void Arc_Unarc();
+unsigned char ChkFindSym(unsigned char *typeflags, unsigned char *rompage,
+    void **symtblentryptrptr, void **dataareaptrptr);
+void CleanAll();
+void CloseProg();
+unsigned char CmpSyms(void *ptr1, void *ptr2, unsigned char n);
 #endif

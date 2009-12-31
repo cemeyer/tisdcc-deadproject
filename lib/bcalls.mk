@@ -14,6 +14,7 @@ Angle.o \
 ApdSetup.o \
 AppGetCalc.o \
 AppGetCbl.o \
+Arc_Unarc.o \
 ASin.o \
 ASinH.o \
 ASinRad.o \
@@ -33,6 +34,7 @@ CDiv.o \
 CEtoX.o \
 CFrac.o \
 CheckSplitFlag.o \
+ChkFindSym.o \
 CIntgr.o \
 CircCmd.o \
 CkInt.o \
@@ -47,6 +49,7 @@ CkOP2Pos.o \
 CkOP2Real.o \
 CkPosInt.o \
 CkValidNum.o \
+CleanAll.o \
 ClearRect.o \
 ClearRow.o \
 CLine.o \
@@ -56,6 +59,7 @@ CLog.o \
 CloseEditBuf.o \
 CloseEditBufNoR.o \
 CloseEditEqu.o \
+CloseProg.o \
 ClrLCD.o \
 ClrLCDFull.o \
 ClrLp.o \
@@ -65,6 +69,7 @@ ClrScrn.o \
 ClrScrnFull.o \
 ClrTxtShd.o \
 CMltByReal.o \
+CmpSyms.o \
 CMult.o \
 Conj.o \
 ConvDim.o \
