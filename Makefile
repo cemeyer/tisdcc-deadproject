@@ -2,6 +2,7 @@ NAME = tisdcc
 
 SDCC = sdcc
 SDCCAS = sdcc-as-z80
+SDCCLIB = sdcclib
 
 DESTDIR = 
 
@@ -16,7 +17,7 @@ includes:
 	cd include/ ; $(MAKE) ; cd ..
 
 libs:
-	cd lib/ ; $(MAKE) ; cd ..
+	cd lib/ ; $(MAKE) SDCC=$(SDCC) SDCCLIB=$(SDCCLIB) ; cd ..
 
 startups:
 	cd startup/ ; $(MAKE) ; cd ..

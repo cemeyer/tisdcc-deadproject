@@ -1,9 +1,13 @@
 include bcalls.mk
 
+SDCC = sdcc
+SDCCLIB = sdcclib
+
 all: ti83p.lib
 
 ti83p.lib: $(TI83P_BCALLS)
-	../../pctools/tisdcc -t ti83p $^ -o ti83p.lib
+	$(SDCCLIB) ti83p.lib $^
 
 %.o: %.c
-	../../pctools/tisdcc -t ti83p -D TI83P -I `pwd`/../../include/ -c -o $@ $^
+	$(SDCC) -mz80 -DTI83P -I../include/ -c -o $@ $^
+	rm $*.asm $*.lst $*.sym
