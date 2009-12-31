@@ -255,7 +255,7 @@ def compile(codeobj, options):
     extraflags.append("-D" + options.platform.upper())
 
     proc = Popen(["sdcc", "-mz80", "--opt-code-size", \
-        "--peep-asm", "--stack-auto", "--std-sdcc99"] + \
+        "--stack-auto", "--std-sdcc99"] + \
         extraflags + ["-c", tempsrc])
     stdout, stderr = proc.communicate()
 
@@ -506,7 +506,7 @@ def compileonly(codeobj, options):
     extraflags.append("-D" + options.platform.upper())
 
     proc = Popen(["sdcc", "-mz80", "--opt-code-size", \
-        "--peep-asm", "--stack-auto", "--std-sdcc99"] + \
+        "--stack-auto", "--std-sdcc99"] + \
         extraflags + ["-c", tempsrc])
     stdout, stderr = proc.communicate()
 
