@@ -137,6 +137,12 @@ CpyToFPS2.o \
 CpyToFPS3.o \
 CpyToFPST.o \
 CpyToStack.o \
+Create0Equ.o \
+CreateAppVar.o \
+CreateCList.o \
+CreateCplx.o \
+CreateEqu.o \
+CreatePair.o \
 CRecip.o \
 CSqRoot.o \
 CSquare.o \

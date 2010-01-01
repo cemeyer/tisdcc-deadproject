@@ -394,4 +394,10 @@ unsigned char ChkFindSym(unsigned char *typeflags, unsigned char *rompage,
 void CleanAll();
 void CloseProg();
 unsigned char CmpSyms(void *ptr1, void *ptr2, unsigned char n);
+unsigned long Create0Equ();
+unsigned long CreateAppVar(unsigned int size);
+unsigned long CreateCList(unsigned int n);
+unsigned long CreateCplx();
+unsigned long CreateEqu(unsigned int size);
+unsigned int CreatePair(unsigned int size);
 #endif
