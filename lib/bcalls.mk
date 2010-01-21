@@ -143,6 +143,14 @@ CreateCList.o \
 CreateCplx.o \
 CreateEqu.o \
 CreatePair.o \
+CreatePict.o \
+CreateProg.o \
+CreateProtProg.o \
+CreateReal.o \
+CreateRList.o \
+CreateRMat.o \
+CreateStrng.o \
+DataSize.o \
 CRecip.o \
 CSqRoot.o \
 CSquare.o \
